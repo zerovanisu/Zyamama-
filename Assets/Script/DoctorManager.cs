@@ -1,10 +1,11 @@
-Ôªøusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.AI;
 
 public class DoctorManager : MonoBehaviour
 {
-	[SerializeField]
+    [SerializeField]
 	public float Speed;
 	public bool OnParts;
 	public bool Catching;
@@ -38,7 +39,7 @@ public class DoctorManager : MonoBehaviour
 	}
 
 	void Move()
-	{
+    {
 		MoveX = Horizontal * Speed;
 		MoveZ = Vertical * Speed;
 		Vector3 direction = new Vector3(MoveX, 0, MoveZ);
@@ -54,19 +55,21 @@ public class DoctorManager : MonoBehaviour
 	}
 
 	void Catch()
-	{
-		if (Input.GetButtonDown("¬Å‚óã_Button"))
-		{
+    {
+		if(Input.GetButtonDown("Åõ_Button"))
+        {
 			OnParts = Hand.GetComponent<DoctorHand>().OnParts;
-			if (OnParts == true && Catching == false)
-			{
+			if(OnParts == true && Catching == false)
+            {
 				Parts = Hand.GetComponent<DoctorHand>().Parts;
 				Catching = true;
-			}
-			else if (Catching == true)
-			{
+				//íÕÇﬁèàóù
+            }
+			else if(Catching == true)
+            {
 				Catching = false;
-			}
-		}
-	}
+				//ó£Ç∑èàóù
+            }
+        }
+    }
 }
