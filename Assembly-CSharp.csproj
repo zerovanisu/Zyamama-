@@ -53,9 +53,9 @@
     <UnityVersion>2020.2.5f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\DoctorManager.cs" />
     <Compile Include="Assets\Script\RobotManager.cs" />
     <Compile Include="Assets\Script\DoctorHand.cs" />
+    <Compile Include="Assets\Script\DoctorManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
