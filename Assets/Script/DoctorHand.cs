@@ -19,7 +19,11 @@ public class DoctorHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //パーツを持っていない時は持っていない判定にする
+        if(Parts == null)
+        {
+            OnParts = false;
+        }
     }
 
     //パーツに触れている時、どのパーツに触れているか
@@ -40,9 +44,6 @@ public class DoctorHand : MonoBehaviour
     {
         if (other.gameObject.tag == "Robot")
         {
-            //触れている判定を取り消す
-            OnParts = false;
-
             //取得パーツを空(何も持っていない状態)にする
             Parts = null;
         }

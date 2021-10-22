@@ -34,6 +34,9 @@ public class DoctorManager : MonoBehaviour
 		Move();
 		Turn();
 		Catch();
+
+		//パーツに触れてるかを取得
+		OnParts = Hand.GetComponent<DoctorHand>().OnParts;
 	}
 
 	void FixedUpdate()
@@ -65,9 +68,6 @@ public class DoctorManager : MonoBehaviour
     {
 		if(Input.GetButtonDown("A_Button"))
         {
-			//パーツに触れてるかを取得
-			OnParts = Hand.GetComponent<DoctorHand>().OnParts;
-			
 			//触れているけど掴んではいないとき(掴む)
 			if(OnParts == true && Catching == false)
             {
