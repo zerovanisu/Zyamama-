@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class RobotManager : MonoBehaviour
 {
-    public GameObject Hand = null;
-    public bool Catching = false;
+    public GameObject Hand = null;//G‚ê‚½è‚ğŠi”[‚·‚é•Ï”
+    public bool Catching = false;//’Í‚Ü‚ê‚Ä‚¢‚é‚©‚ğ”»’è‚·‚é•Ï”
 
-    public float PosX,PosY,PosZ = 0;
+    public float PosX,PosY,PosZ = 0;//è‚ÌÀ•W‚ğŠi”[‚·‚é•Ï”
 
     [SerializeField]
-    private float limit,High = 0;
+    private float High = 0;//‚¿ã‚°‚é‚‚³
 
     Rigidbody rb;
     BoxCollider bc;
+    Vector3 FarstPos;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
+        FarstPos = this.transform.position;//‰ŠúˆÊ’u‚ğ‹L‰¯
     }
 
     // Update is called once per frame
@@ -38,12 +40,10 @@ public class RobotManager : MonoBehaviour
             PosX = Hand.transform.position.x;
             PosY = this.transform.position.y;
             PosZ = Hand.transform.position.z;
-
-            //‚‚³‚ª’á‚©‚Á‚½‚ç‚¿ã‚°‚é
-            if(PosY < limit)
-            {
-                PosY = High;
-            }
+            //‚¿ã‚°‚éˆ—
+            PosY = High;
+            
+            //À•W‚ğ”½‰f
             this.transform.position = new Vector3(PosX, PosY, PosZ);
 
             //‰ñ“]‚âˆÊ’u‚¸‚ê‚ª‹N‚«‚È‚¢‚æ‚¤‚É~‚ß‚éˆ—
@@ -62,6 +62,16 @@ public class RobotManager : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation
                 | RigidbodyConstraints.FreezeRotationX
                 | RigidbodyConstraints.FreezeRotationZ;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //G‚ê‚½‚Ì‚ª’n–Ê‚¾‚Á‚½‚ç(—‚Æ‚³‚ê‚½‚ç)
+        if (collision.gameObject.tag == "Ground")
+        {
+            //‰ŠúˆÊ’u‚É–ß‚·
+            this.transform.position = FarstPos;
         }
     }
 
