@@ -11,10 +11,6 @@ public class DoctorManager : MonoBehaviour
 	public GameObject Hand;//手を格納する変数
 	public GameObject Parts;//触れている(掴んでいる)パーツを格納する変数
 
-	//移動量を格納する変数
-	float MoveX = 0f;
-	float MoveZ = 0f;
-
 	Rigidbody rb;
 
 	//スティック入力を格納する変数
@@ -29,6 +25,7 @@ public class DoctorManager : MonoBehaviour
 
 	void Update()
 	{
+		//スティック入力を受け取る
 		Horizontal = Input.GetAxis("Horizontal_Dr");
 		Vertical = Input.GetAxis("Vertical_Dr");
 		Move();
@@ -48,9 +45,7 @@ public class DoctorManager : MonoBehaviour
 	//移動量の計算
 	void Move()
     {
-		MoveX = Horizontal * Speed;
-		MoveZ = Vertical * Speed;
-		direction = new Vector3(MoveX, 0, MoveZ);
+		direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
 	}
 
 	//向きの変更
