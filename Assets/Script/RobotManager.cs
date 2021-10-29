@@ -11,6 +11,7 @@ public class RobotManager : MonoBehaviour
 
     [SerializeField]
     private float High = 0;//‚¿ã‚°‚é‚‚³
+    public string SkillName;//ƒXƒLƒ‹‚Ìí—Ş‚ğŠi”[‚·‚é•Ï”
 
     Rigidbody rb;
     BoxCollider bc;
@@ -75,6 +76,19 @@ public class RobotManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Catching == true)
+        {
+            //G‚ê‚½‚Ì‚ªì‹Æ‘ä‚¾‚Á‚½‚ç
+            if (other.gameObject.tag == "CreateTable")
+            {
+                //”­“®‚Å‚«‚éƒXƒLƒ‹‚Ìí—Ş‚ğ‹L‰¯
+                SkillName = other.gameObject.GetComponent<TableManager>().SkillName;
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         //G‚ê‚Ä‚¢‚é‚Ì‚ªè‚¾‚Á‚½‚ç
@@ -92,6 +106,11 @@ public class RobotManager : MonoBehaviour
         {
             //è‚Ìî•ñ‚ğ”jŠü
             Hand = null;
+        }
+
+        if (other.gameObject.tag == "CreateTable")
+        {
+            SkillName = null;
         }
     }
 }

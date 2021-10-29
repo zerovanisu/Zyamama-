@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2944918992240403090}
   - component: {fileID: 2944918992240403177}
   m_Layer: 0
-  m_Name: Parts
+  m_Name: Parts 1
   m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,4 +130,4 @@ MonoBehaviour:
   PosX: 0
   PosY: 0
   PosZ: 0
-  High: 1.5
+  High: 1.6
