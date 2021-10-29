@@ -7,6 +7,7 @@ public class DoctorHand : MonoBehaviour
     [SerializeField]
     public bool OnParts = false;//ƒp[ƒc‚ÉG‚ê‚Ä‚¢‚é‚©‚Ì”»’è
     public GameObject Parts;//G‚ê‚Ä‚¢‚éƒp[ƒc‚ğŠi”[‚·‚é•Ï”
+    public string SkillName;
 
     Rigidbody Rb;
 
@@ -36,6 +37,8 @@ public class DoctorHand : MonoBehaviour
 
             //G‚ê‚Ä‚¢‚éƒp[ƒc‚ğŠi”[
             Parts = other.gameObject;
+
+            SkillName = other.gameObject.GetComponent<RobotManager>().SkillName;
         }
     }
 
