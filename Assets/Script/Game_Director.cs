@@ -1,15 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ActionDirector : MonoBehaviour
+public class Game_Director : MonoBehaviour
 {
+    [Header("制限時間を変更できるよ")]
     [SerializeField]
-    private int Point = 0;//パーツ格納数
+    private float Timmer;
 
-    public int Parts_No;//全体のパーツ数
-    public GameObject Generation, Doctor,Hand;//[パーツ格納場所の判定、博士、手]を格納する変数
-    public bool Doctor_Win = false;//博士の勝利フラグ
+    [Header("パーツ格納数")]
+    [SerializeField]
+    private int Point = 0;
+
+    [Header("全体のパーツ数")]
+    public int Parts_No;
+
+    [Header("博士の勝利フラグ")]
+    public bool Doctor_Win = false;
+
+    [Header("ジャママーの勝利フラグ")]
+    public bool Zyama_Win = false;
+
+    [Header("ライフ")]
+    [SerializeField]
+    private int Life_Doctor, Life_Zyama;
+
+    [Header("内部処理用の変数")]
+    [SerializeField]
+    private GameObject Generation, Doctor, Hand, Zyama;
+    [SerializeField]
+    private Text Count_Text;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +43,38 @@ public class ActionDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Timmer -= Time.deltaTime;
+
+        //それぞれのライフを取得(更新)
+        Life_Doctor = Doctor.GetComponent<DoctorManager>().Life_Doctor;
+        Life_Zyama = Zyama.GetComponent<Jamma>().Life_Zyama;
+
         //パーツの格納数が全体のパーツ数になった時
         if(Point == Parts_No)
         {
             Doctor_Win = true;//博士の勝利フラグを立てる
             Debug.Log("博士勝ち");
         }
+
+        //博士のライフが0になったら
+        if(Life_Doctor <= 0)
+        {
+            Zyama_Win = true;
+            Debug.Log("ジャママーの勝ち");
+        }
+
+        //ジャママーのライフが0になったら
+        if(Life_Zyama <= 0)
+        {
+            Doctor_Win = true;
+            Debug.Log("博士の勝ち");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        //タイマーの更新
+        Count_Text.text = "残り時間 " + Timmer.ToString("F2");
     }
 
     private void OnTriggerEnter(Collider other)

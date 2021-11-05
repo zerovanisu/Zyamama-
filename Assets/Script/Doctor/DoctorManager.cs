@@ -7,6 +7,9 @@ public class DoctorManager : MonoBehaviour
 	[Header("動ける状態かの判定")]
 	public bool Frieze = false;
 
+	[Header("ライフ数を変更できるよ")]
+	public int Life_Doctor;
+
 	[Header("博士の移動速度を変更できるよ")]
 	public float Speed;
 	
