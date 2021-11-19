@@ -8,6 +8,7 @@ public class DoctorHand : MonoBehaviour
     public bool OnParts = false;//パーツに触れているかの判定
     public GameObject Parts;//触れているパーツを格納する変数
     public string SkillName;
+    public GameObject Doctor;
 
     Rigidbody Rb;
 
@@ -40,6 +41,11 @@ public class DoctorHand : MonoBehaviour
 
             SkillName = other.gameObject.GetComponent<RobotManager>().SkillName;
         }
+        if(other.gameObject.tag == "CreateTable")
+        {
+            //作業台に触れている判定に書き換える
+            Doctor.GetComponent<DoctorManager>().OnTable = true;
+        }
     }
 
     //パーツを離した時
@@ -49,6 +55,12 @@ public class DoctorHand : MonoBehaviour
         {
             //取得パーツを空(何も持っていない状態)にする
             Parts = null;
+        }
+
+        if (other.gameObject.tag == "CreateTable")
+        {
+            //作業台に触れていない判定に書き換える
+            Doctor.GetComponent<DoctorManager>().OnTable = false;
         }
     }
 }
