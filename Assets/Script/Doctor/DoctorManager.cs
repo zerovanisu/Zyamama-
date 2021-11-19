@@ -39,9 +39,13 @@ public class DoctorManager : MonoBehaviour
 	public GameObject Hand;//手を格納する変数
 	public GameObject Parts;//触れている(掴んでいる)パーツを格納する変数
 	public bool Skill_Keep;//パーツを加工したか
+
 	private bool Create_now;//作業している時はtrue
 	private float Createnow_Time = 0;//作業時間を測る用の変数
 	Rigidbody rb;
+
+	//最終入力を保存する変数
+	Quaternion LastRotation;
 
 	//スティック入力を格納する変数
 	float Horizontal;
@@ -141,11 +145,22 @@ public class DoctorManager : MonoBehaviour
 	//向きの変更
 	void Turn()
 	{
+		//少しでも入力があったら
 		if (Horizontal != 0 || Vertical != 0)
 		{
+			//向きを変更
 			var direction = new Vector3(Horizontal, 0, Vertical);
 			transform.localRotation = Quaternion.LookRotation(direction);
+			
+			//向いた方向を保存
+			LastRotation = transform.localRotation;
 		}
+		//無入力状態だったら
+		else
+        {
+			//保存していた方向に向かせておく
+			transform.localRotation = LastRotation;
+        }
 	}
 
 	//パーツを掴む処理
@@ -187,7 +202,7 @@ public class DoctorManager : MonoBehaviour
 				break;
 
 			case "Blue":
-				Bule_Skill();
+				Blue_Skill();
 				break;
 
 			case "Yellow":
@@ -207,9 +222,9 @@ public class DoctorManager : MonoBehaviour
 		}
 	}
 
-	void Bule_Skill()//青スキル
+	void Blue_Skill()//青スキル
 	{
-		//ジャママーのボールを打ち返すことが出来る
+
 	}
 
 	void Yellow_Skill()//黄スキル

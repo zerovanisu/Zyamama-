@@ -97,6 +97,13 @@ public class Ball : MonoBehaviour
                     
                     Destroy(this.gameObject);
                 }
+                else
+                {
+                    if(hit.gameObject.GetComponent<DoctorManager>().SkillName == "Blue")
+                    {
+                        //break;
+                    }
+                }
                 break;
 
             case "DestroyZONE":
