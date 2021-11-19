@@ -6,15 +6,27 @@ using System;
 
 public class PlacementManager : MonoBehaviour
 {
+    [Header("各配置場所とパーツを格納")]
     [SerializeField]
-    public GameObject[] Generation, Parts;//各配置場所とパーツを格納
+    public GameObject[] Generation, Parts;
 
-    public int Parts_No;//パーツの数
-    
+    [Header("作業台を格納")]
     public GameObject Table;
-    Vector3 TableSize;
+
+    [Header("パーツの数")]
+    public int Parts_No;
+
+    [Header("作業台の数")]
     [SerializeField]
     int TableNo;
+
+    [Header("生成場所(中心)")]
+    [SerializeField]
+    Vector3 Range_L, Range_R;
+
+    [Header("生成場所(範囲)")]
+    [SerializeField]
+    float Range_x, Range_z;
 
     private void Awake()
     {
@@ -47,23 +59,25 @@ public class PlacementManager : MonoBehaviour
         }
     }
 
+    //作業台生成
     void Table_Create()
     {
-        //作業台の半径を代入
-        TableSize = Table.transform.localScale / 2;
+        //左側の生成
+        Vector3 posL;
 
-        //作業台を生成
-        for (int i = 0; i < TableNo; i++)
-        {
-            Vector3 pos = UnityEngine.Random.insideUnitCircle * 6;
-            pos.z = pos.y;
-            pos.y = TableSize.y;
+        posL.x = UnityEngine.Random.Range(Range_L.x + Range_x, Range_L.x + -Range_x);
+        posL.z = UnityEngine.Random.Range(Range_L.z + Range_z, Range_L.z + -Range_z);
+        posL.y = Table.transform.position.y;
 
-            if (!Physics.CheckBox(pos, TableSize, Quaternion.identity, 1 << 12))
-            {
-                Instantiate(Table, pos, Quaternion.identity);
-                break;
-            }
-        }
+        Instantiate(Table, posL, Quaternion.identity);
+
+        //右側の生成
+        Vector3 posR;
+
+        posR.x = UnityEngine.Random.Range(Range_R.x + Range_x, Range_R.x + -Range_x);
+        posR.z = UnityEngine.Random.Range(Range_R.z + Range_z, Range_R.z + -Range_z);
+        posR.y = Table.transform.position.y;
+
+        Instantiate(Table, posR, Quaternion.identity);
     }
 }
