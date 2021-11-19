@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Life_Zyama: 3
-  speed: 5
+  speed: 6
   ball: {fileID: 304130431323708524, guid: 1d6e81dd83498d641a5b3ee631febd28, type: 3}
   Frieze: 0
   Shot: 0
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   TableNo: 2
   Range_L: {x: -5, y: 0, z: -1.5}
   Range_R: {x: 5, y: 0, z: -1.5}
-  Range_x: 3.5
+  Range_x: 3
   Range_z: 2
 --- !u!4 &534225565
 Transform:
@@ -1711,7 +1711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5615688896426050242, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
       propertyPath: m_Name
-      value: Jamama
+      value: Zyamama
       objectReference: {fileID: 0}
     - target: {fileID: 5615688896426050242, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
       propertyPath: m_Layer
@@ -3452,8 +3452,20 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3038176387263556060, guid: 3f6747222eb073e49b4b9c20c0e1e86f, type: 3}
+      propertyPath: Jama
+      value: 
+      objectReference: {fileID: 212419571}
+    - target: {fileID: 3038176387263556060, guid: 3f6747222eb073e49b4b9c20c0e1e86f, type: 3}
+      propertyPath: Zyama
+      value: 
+      objectReference: {fileID: 212419571}
+    - target: {fileID: 3038176387263556060, guid: 3f6747222eb073e49b4b9c20c0e1e86f, type: 3}
       propertyPath: Life_Doctor
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038176387263556060, guid: 3f6747222eb073e49b4b9c20c0e1e86f, type: 3}
+      propertyPath: StickSafety
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3038176387263556062, guid: 3f6747222eb073e49b4b9c20c0e1e86f, type: 3}
       propertyPath: m_UseGravity

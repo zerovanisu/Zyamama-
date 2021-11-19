@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6c22b26883a394f8bf24de0339a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 8
+  movespeed: 6
   istrue: 0
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}

@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
     [Header("ジャママーが入る変数")]
     public GameObject Zyamama;
 
+    public GameObject Doctor;
+
     //移動ベクトルを保存する変数
     private Vector3 pos;
 
@@ -30,6 +32,8 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Zyamama = GameObject.Find("Zyamama");
+        Doctor = GameObject.Find("Doctor");
         rb = this.GetComponent<Rigidbody>();
         //float randomValue = Random.Range(-100f, 10f);
         //int xComponent = (int)Mathf.Sign(randomValue);
@@ -77,7 +81,11 @@ public class Ball : MonoBehaviour
                 break;
 
             case "Capsule"://当たったものがカプセル(ブロック)の時
-                Destroy(hit.gameObject);//カプセルを消す
+                //博士の赤スキルが発動中だった場合
+                if (Doctor.GetComponent<DoctorManager>().SkillOn == false && Doctor.GetComponent<DoctorManager>().SkillName != "Red")
+                {
+                    Destroy(hit.gameObject);//カプセルを消す
+                }
                 break;
         }
 
@@ -96,13 +104,6 @@ public class Ball : MonoBehaviour
                     Zyamama.gameObject.GetComponent<Jamma>().Shot = false;
                     
                     Destroy(this.gameObject);
-                }
-                else
-                {
-                    if(hit.gameObject.GetComponent<DoctorManager>().SkillName == "Blue")
-                    {
-                        //break;
-                    }
                 }
                 break;
 

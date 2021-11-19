@@ -19,6 +19,9 @@ public class DoctorManager : MonoBehaviour
 	[Header("パーツを掴んでいるかの判定")]
 	public bool Catching;
 
+	[Header("作業台に触れているかの判定")]
+	public bool OnTable = false;
+
 	[Header("スキルが発動しているかの判定")]
 	public bool SkillOn = false;
 
@@ -35,10 +38,13 @@ public class DoctorManager : MonoBehaviour
 	private float Create_Time = 0;
 
 	[Header("処理用変数～触らないでね～")]
+	[SerializeField]
+	private float StickSafety;//コントローラーの微入力をどこまで省くか
 	public string SkillName;//発動するスキルの種類を格納する変数
 	public GameObject Hand;//手を格納する変数
 	public GameObject Parts;//触れている(掴んでいる)パーツを格納する変数
 	public bool Skill_Keep;//パーツを加工したか
+	public GameObject Zyama;//ジャママーを格納する変数
 
 	private bool Create_now;//作業している時はtrue
 	private float Createnow_Time = 0;//作業時間を測る用の変数
@@ -67,40 +73,23 @@ public class DoctorManager : MonoBehaviour
 			//スティック入力を受け取る
 			Horizontal = Input.GetAxis("Horizontal_Dr");
 			Vertical = Input.GetAxis("Vertical_Dr");
-			Move();
+			
+			//移動量の計算
+			direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
+			
+			//向きの切り替え
 			Turn();
+
+			//パーツを掴む処理
 			Catch();
 
 			//パーツに触れてるかを取得
 			OnParts = Hand.GetComponent<DoctorHand>().OnParts;
 
 			//スキルボタンを押されたら
-			if (Input.GetButtonDown("X_Button"))
+			if (Input.GetButtonDown("△_Button"))
 			{
-				//パーツを持っている、スキル発動中ではない、作業を終えたパーツを持っていない時
-				if (Catching == true && SkillOn == false && Skill_Keep == false)
-				{
-					SkillName = Hand.GetComponent<DoctorHand>().SkillName;//スキルを取得
-					
-					//スキルの発動時間を取得
-					switch (SkillName)
-					{
-						case "Blue":
-							SkillTime = Blue_Time;
-							break;
-
-						case "Yellow":
-							SkillTime = Yellow_Time;
-							break;
-
-						case "Red":
-							SkillTime = Red_Time;
-							break;
-					}
-
-					Createnow_Time = Create_Time;//作業用のカウントダウンを設定・再設定
-					Create_now = true;//作業中のフラグをオンにする(オンの間は動けない)
-				}
+				Create();
 			}
 		}
 	}
@@ -108,11 +97,26 @@ public class DoctorManager : MonoBehaviour
 	//実行系はこっち
 	void FixedUpdate()
 	{
-		//移動量を振り当てる(実際に移動させる)処理
-		rb.velocity = direction;
+		if (Frieze == false)
+		{
+			//入力が極僅かな場合は移動量をなくす
+			if (Horizontal >= StickSafety || Vertical >= StickSafety || Horizontal <= -StickSafety || Vertical <= -StickSafety)
+			{
+				//移動量を振り当てる(実際に移動させる)処理
+				rb.velocity = direction;
+			}
+			else
+            {
+				rb.velocity = new Vector3 (0, transform.position.y, 0);
+			}
+		}
+		else
+		{
+			rb.velocity = new Vector3(0, 0, 0);
+		}
 
 		//スキルを実行
-		if(SkillOn == true)
+		if (SkillOn == true)
         {
 			Skill();
         }
@@ -136,37 +140,31 @@ public class DoctorManager : MonoBehaviour
 		}
 	}
 
-	//移動量の計算
-	void Move()
-    {
-		direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
-	}
-
 	//向きの変更
 	void Turn()
 	{
-		//少しでも入力があったら
-		if (Horizontal != 0 || Vertical != 0)
+		//入力されている時(極僅かな入力は省く)
+		if (Horizontal >= StickSafety || Vertical >= StickSafety || Horizontal <= -StickSafety || Vertical <= -StickSafety)
 		{
 			//向きを変更
 			var direction = new Vector3(Horizontal, 0, Vertical);
 			transform.localRotation = Quaternion.LookRotation(direction);
-			
+
 			//向いた方向を保存
 			LastRotation = transform.localRotation;
 		}
 		//無入力状態だったら
 		else
-        {
+		{
 			//保存していた方向に向かせておく
 			transform.localRotation = LastRotation;
-        }
+		}
 	}
 
 	//パーツを掴む処理
 	void Catch()
     {
-		if(Input.GetButtonDown("A_Button"))
+		if(Input.GetButtonDown("○_Button"))
         {
 			//触れているけど掴んではいないとき(掴む)
 			if(OnParts == true && Catching == false)
@@ -188,6 +186,33 @@ public class DoctorManager : MonoBehaviour
 			}
         }
     }
+
+	void Create()
+    {
+		//パーツを持っている、スキル発動中ではない、作業台に触れている、作業を終えたパーツを持っていない時
+		if (Catching == true && SkillOn == false && OnTable == true && Skill_Keep == false)
+		{
+			SkillName = Hand.GetComponent<DoctorHand>().SkillName;//スキルを取得
+
+			//スキルの発動時間を取得
+			switch (SkillName)
+			{
+				case "Blue":
+					SkillTime = Blue_Time;
+					break;
+
+				case "Yellow":
+					SkillTime = Yellow_Time;
+					break;
+
+				case "Red":
+					SkillTime = Red_Time;
+					break;
+			}
+			Createnow_Time = Create_Time;//作業用のカウントダウンを設定・再設定
+			Create_now = true;//作業中のフラグをオンにする(オンの間は動けない)
+		}
+	}
 
 	//スキル全般の処理
 	void Skill()
@@ -219,6 +244,8 @@ public class DoctorManager : MonoBehaviour
 		{
 			SkillOn = false;
 			SkillName = null;
+
+			Zyama.GetComponent<Jamma>(). Frieze = false;
 		}
 	}
 
@@ -229,7 +256,7 @@ public class DoctorManager : MonoBehaviour
 
 	void Yellow_Skill()//黄スキル
     {
-		//ジャママーの動きを止めることが出来る
+		Zyama.GetComponent<Jamma>().Frieze = true;
 	}
 
 	void Red_Skill()//赤スキル

@@ -43,7 +43,18 @@ public class Game_Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timmer -= Time.deltaTime;
+        //カウントが終わっていない時
+        if(Timmer >= 0)
+        {
+            //カウントを進める
+            Timmer -= Time.deltaTime;
+        }
+        //カウントが終わったら
+        else
+        {
+            //ジャママーの勝ちにする
+            Zyama_Win = true;
+        }
 
         //それぞれのライフを取得(更新)
         Life_Doctor = Doctor.GetComponent<DoctorManager>().Life_Doctor;
@@ -73,8 +84,22 @@ public class Game_Director : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //タイマーの更新
-        Count_Text.text = "残り時間 " + Timmer.ToString("F2");
+        if(Timmer >= 0)
+        {
+            //タイマーの更新
+            Count_Text.text = "残り時間 " + Timmer.ToString("F0");
+        }
+        else
+        {
+            if(Doctor_Win == true)
+            {
+                Count_Text.text = "博士の勝ち！";
+            }
+            else if(Zyama_Win == true)
+            {
+                Count_Text.text = "ジャママーの勝ち！";
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

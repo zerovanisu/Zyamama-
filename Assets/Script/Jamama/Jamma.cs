@@ -67,7 +67,14 @@ public class Jamma : MonoBehaviour
 
     void FixedUpdate()
     {
-        //移動量を振り当てる(実際に移動させる)処理
-        rb.velocity = direction;
+        if (Frieze == false)
+        {
+            //移動量を振り当てる(実際に移動させる)処理
+            rb.velocity = direction;
+        }
+        else
+        {
+            rb.velocity = new Vector3 (0,0,0);
+        }
     }
 }

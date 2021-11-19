@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3038176387263556063}
   - component: {fileID: 3038176387263556060}
   m_Layer: 0
-  m_Name: 6_Doctor
+  m_Name: Doctor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,9 +252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Frieze: 0
+  Life_Doctor: 0
   Speed: 5
   OnParts: 0
   Catching: 0
+  OnTable: 0
   SkillOn: 0
   Blue_Time: 10
   Yellow_Time: 3
@@ -376,6 +378,7 @@ MonoBehaviour:
   OnParts: 0
   Parts: {fileID: 0}
   SkillName: 
+  Doctor: {fileID: 2803680443619921950}
 --- !u!1 &4501898071210907480
 GameObject:
   m_ObjectHideFlags: 0
