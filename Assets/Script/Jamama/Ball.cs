@@ -81,8 +81,8 @@ public class Ball : MonoBehaviour
                 break;
 
             case "Capsule"://当たったものがカプセル(ブロック)の時
-                //博士の赤スキルが発動中だった場合
-                if (Doctor.GetComponent<DoctorManager>().SkillOn == false && Doctor.GetComponent<DoctorManager>().SkillName != "Red")
+                //博士の赤スキルが発動していない時
+                if (Doctor.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Red")
                 {
                     Destroy(hit.gameObject);//カプセルを消す
                 }
@@ -93,7 +93,7 @@ public class Ball : MonoBehaviour
         {
             //当たったのが博士の時
             case "Doctor"://博士のスキルが発動してなければ消去
-                if (hit.gameObject.GetComponent<DoctorManager>().SkillOn == false)
+                if(hit.gameObject.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Blue")
                 {
                     Debug.Log("博士が被弾したよ");
 
@@ -102,7 +102,7 @@ public class Ball : MonoBehaviour
 
                     //ジャママーの射撃中判定をリセット
                     Zyamama.gameObject.GetComponent<Jamma>().Shot = false;
-                    
+
                     Destroy(this.gameObject);
                 }
                 break;

@@ -64,21 +64,18 @@ public class Game_Director : MonoBehaviour
         if(Point == Parts_No)
         {
             Doctor_Win = true;//博士の勝利フラグを立てる
-            Debug.Log("博士勝ち");
         }
 
         //博士のライフが0になったら
         if(Life_Doctor <= 0)
         {
             Zyama_Win = true;
-            Debug.Log("ジャママーの勝ち");
         }
 
         //ジャママーのライフが0になったら
         if(Life_Zyama <= 0)
         {
             Doctor_Win = true;
-            Debug.Log("博士の勝ち");
         }
     }
 
