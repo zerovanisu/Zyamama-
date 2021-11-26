@@ -129,4 +129,12 @@ MonoBehaviour:
   istrue: 0
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}
+  Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
+  Boost:
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}
+  - {fileID: 7208857336366000570, guid: d005fde28e6892e4b811c3a22bc87b4c, type: 3}

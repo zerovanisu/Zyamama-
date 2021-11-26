@@ -28,6 +28,7 @@ public class Ball : MonoBehaviour
 
     // 跳ね返った後のverocity
     [HideInInspector] public Vector3 afterReflectVero = Vector3.zero;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class Ball : MonoBehaviour
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
+
     }
      void Update()
     {
@@ -136,4 +138,7 @@ public class Ball : MonoBehaviour
             Destroy(GetComponent<Collider>().gameObject);
          }
      }*/
+    
+
+
 }
