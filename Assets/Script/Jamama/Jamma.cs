@@ -19,7 +19,11 @@ public class Jamma : MonoBehaviour
     public int Life_Zyama;
 
     [Header("移動速度が変更できるよ")]
-    public float speed;
+    public float Speed;
+
+    [Header("低速時の速度が変更できるよ")]
+    [SerializeField]
+    private float SlowSpeed;
 
     private Rigidbody rb;//リジッドボディ
 
@@ -49,7 +53,14 @@ public class Jamma : MonoBehaviour
             Horizontal = Input.GetAxis("Horizontal_Ja");
 
             //移動量計算
-            direction = new Vector3(Horizontal, 0, 0).normalized * speed;
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                direction = new Vector3(Horizontal, 0, 0).normalized * SlowSpeed;
+            }
+            else
+            {
+                direction = new Vector3(Horizontal, 0, 0).normalized * Speed;
+            }
 
             //発射処理
             if (Input.GetButtonDown("X_Button_2"))
@@ -57,7 +68,8 @@ public class Jamma : MonoBehaviour
                 if (Shot == false)
                 {
                     Vector3 tmp = this.gameObject.transform.position;
-                    Instantiate(ball, tmp, Quaternion.identity);
+                    tmp.y = 0.5f;
+                    Instantiate(ball,tmp, Quaternion.identity);
                     ball.GetComponent<Ball>().Zyamama = this.gameObject;
                     Shot = true;
                 }

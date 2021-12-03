@@ -173,13 +173,13 @@ public class DoctorManager : MonoBehaviour
 				Parts = Hand.GetComponent<DoctorHand>().Parts;
 
 				//パーツに掴んでいる判定を送る
-				Catching = Parts.GetComponent<RobotManager>().Catching = true;
+				Catching = Parts.GetComponent<PartsManager>().Catching = true;
             }
 			//掴んでいる時(離す)
 			else if(Catching == true)
             {
 				//パーツの掴んでいる判定を取り消す(離す)
-				Catching = Parts.GetComponent<RobotManager>().Catching = false;
+				Catching = Parts.GetComponent<PartsManager>().Catching = false;
 
 				//持ってるパーツを何もない状態にする
 				Parts = null;

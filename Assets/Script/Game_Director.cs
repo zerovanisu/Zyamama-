@@ -28,7 +28,7 @@ public class Game_Director : MonoBehaviour
 
     [Header("内部処理用の変数")]
     [SerializeField]
-    private GameObject Generation, Doctor, Hand, Zyama;
+    private GameObject Generation, Doctor, Hand, Zyama, Robots;
     [SerializeField]
     private Text Count_Text;
 
@@ -106,6 +106,8 @@ public class Game_Director : MonoBehaviour
         {
             Point += 1;//格納数を加算
 
+            Robots.GetComponent<RobotManager>().CreateRobot(other.gameObject);//他のパーツと合体させる
+
             //博士達のフラグや持ち物を代わりにリセット
             Doctor.GetComponent<DoctorManager>().Parts
                 = Hand.GetComponent<DoctorHand>().Parts
@@ -118,7 +120,6 @@ public class Game_Director : MonoBehaviour
             Doctor.GetComponent<DoctorManager>().SkillOn = true;//博士のスキルを発動させる
             Doctor.GetComponent<DoctorManager>().Skill_Keep = false;//博士の加工後パーツ取得状をリセット
 
-            Destroy(other.gameObject);//パーツを消去
             Debug.Log("博士のポイント" + Point + "/" + Parts_No);
         }
     }
