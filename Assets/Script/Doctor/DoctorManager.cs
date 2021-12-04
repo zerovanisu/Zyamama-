@@ -31,11 +31,11 @@ public class DoctorManager : MonoBehaviour
 
 	[Header("発動中のスキルの残り時間")]
 	[SerializeField]
-	private float SkillTime = 0;
+	private float SkillTime;
 
 	[Header("パーツ加工の作業時間を変更できるよ")]
 	[SerializeField]
-	private float Create_Time = 0;
+	public float Create_Time;
 
 	[Header("処理用変数～触らないでね～")]
 	[SerializeField]
@@ -47,7 +47,7 @@ public class DoctorManager : MonoBehaviour
 	public GameObject Zyama;//ジャママーを格納する変数
 
 	private bool Create_now;//作業している時はtrue
-	private float Createnow_Time = 0;//作業時間を測る用の変数
+	public float Createnow_Time = 0;//作業時間を測る用の変数
 	Rigidbody rb;
 
 	//最終入力を保存する変数
