@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 5090545188508850296}
   - component: {fileID: 2006671457652312174}
   - component: {fileID: 4256355690947228318}
+  - component: {fileID: 6033578933281663094}
   m_Layer: 0
   m_Name: Zyamama
   m_TagString: Untagged
@@ -386,10 +387,24 @@ BoxCollider:
   m_GameObject: {fileID: 5615688896426050242}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5, z: 1.1}
   m_Center: {x: 0, y: 0.74, z: 0.05}
+--- !u!136 &6033578933281663094
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615688896426050242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &6666918031999030543
 GameObject:
   m_ObjectHideFlags: 0

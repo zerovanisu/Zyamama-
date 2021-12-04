@@ -28,12 +28,10 @@ public class RobotManager : MonoBehaviour
     //パーツを合体させる処理
     public void CreateRobot(GameObject Parts)
     {
-        if(Parts.name == Head.name)
-        {
-            Head.SetActive(true);
-        }
+        //クローンのオブジェクトなので(Clone)の文字を空白に変えてパーツ名と同じにする
+        string chackname = Parts.name.Replace("(Clone)", "");
 
-        switch (Parts.name)
+        switch (chackname)
         {
             case "Parts_Head":
                 Head.SetActive(true);
@@ -54,11 +52,8 @@ public class RobotManager : MonoBehaviour
             case "Parts_Leg_R":
                 Leg_R.SetActive(true);
                 break;
-
-            default:
-                Debug.Log(Parts.name);
-                Destroy(Parts);
-                break;
         }
+
+        Destroy(Parts);//手に持ってるパーツを消す
     }
 }
