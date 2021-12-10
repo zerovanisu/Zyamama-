@@ -68,6 +68,7 @@ public class Jamma : MonoBehaviour
                 if (Shot == false)
                 {
                     Vector3 tmp = this.gameObject.transform.position;
+                    tmp.z = this.gameObject.transform.position.z + 1.4f;
                     tmp.y = 0.5f;
                     Instantiate(ball,tmp, Quaternion.identity);
                     ball.GetComponent<Ball>().Zyamama = this.gameObject;
@@ -87,6 +88,16 @@ public class Jamma : MonoBehaviour
         else
         {
             rb.velocity = new Vector3 (0,0,0);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //クローンのオブジェクトなので(Clone)の文字を空白に変えてパーツ名と同じにする
+        string chackname = collision.gameObject.name.Replace("(Clone)", "");
+        if (chackname == "Ball")
+        {
+            Sound_Manager.Instance.PlaySE(SE.Bounce);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class Sound_Manager : MonoBehaviour
 {
     [SerializeField]
     private const int BGM_CHANNEL = 2;
@@ -35,9 +35,9 @@ public class SoundManager : MonoBehaviour
 
     private Dictionary<AudioType, List<AudioSource>> channelDict = null;
 
-    private static SoundManager instance = null;
+    private static Sound_Manager instance = null;
 
-    public static SoundManager Instance
+    public static Sound_Manager Instance
     {
         get
         {

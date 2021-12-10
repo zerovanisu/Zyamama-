@@ -62,6 +62,7 @@ public class DoctorManager : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		SkillName = null;
 	}
 
 	//入力系はこっち
@@ -117,9 +118,9 @@ public class DoctorManager : MonoBehaviour
 
 		//スキルを実行
 		if (SkillOn == true)
-        {
+		{
 			Skill();
-        }
+		}
 
 		//作業中のフラグがオンの時
 		if (Create_now == true)
