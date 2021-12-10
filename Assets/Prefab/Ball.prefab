@@ -126,10 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6c22b26883a394f8bf24de0339a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 6
+  movespeed: 8
   istrue: 0
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}
+  DestroyTime: 10
+  DestoryScale: 0.001
   Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
 --- !u!1001 &6081328925556683899
@@ -139,6 +141,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 304130431323708435}
     m_Modifications:
+    - target: {fileID: 3738728566283566502, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728566326230588, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728566647555222, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728566712722092, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728566712722092, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3738728566712722094, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
       propertyPath: m_Name
       value: pfb_eff_play_20_ball
@@ -185,6 +207,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3738728566712722099, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728566802156679, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728567137674874, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728567381599720, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728567432629648, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728568081965075, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738728568248364870, guid: e259735c586b09a4e9fd6baa33154920, type: 3}
+      propertyPath: scalingMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

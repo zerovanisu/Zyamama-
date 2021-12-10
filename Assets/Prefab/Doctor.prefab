@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frieze: 0
   Life_Doctor: 0
-  Speed: 5
+  Speed: 8
   OnParts: 0
   Catching: 0
   OnTable: 0
@@ -257,6 +257,7 @@ MonoBehaviour:
   Parts: {fileID: 0}
   Skill_Keep: 0
   Zyama: {fileID: 0}
+  Createnow_Time: 0
 --- !u!1 &3038176386676869590
 GameObject:
   m_ObjectHideFlags: 0

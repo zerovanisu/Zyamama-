@@ -31,6 +31,7 @@ public class Game_Director : MonoBehaviour
     private GameObject Generation, Doctor, Hand, Zyama, Robots;
     [SerializeField]
     private Text Count_Text;
+    public bool BlockBreake;//ジャママーのブロック破壊音を鳴らすフラグ
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +78,12 @@ public class Game_Director : MonoBehaviour
         {
             Doctor_Win = true;
         }
+        if (BlockBreake == true)
+        {
+            Sound_Manager.Instance.PlaySE(SE.Break_1);
+            Sound_Manager.Instance.PlaySE(SE.Break_2);
+            BlockBreake = false;
+        }
     }
 
     private void FixedUpdate()
@@ -107,6 +114,12 @@ public class Game_Director : MonoBehaviour
             Point += 1;//格納数を加算
 
             Robots.GetComponent<RobotManager>().CreateRobot(other.gameObject);//他のパーツと合体させる
+
+            //博士が何かしらのスキルを持っていた場合スキル発動音を鳴らす
+            if (Doctor.GetComponent<DoctorManager>().SkillName != null && Doctor.GetComponent<DoctorManager>().SkillOn == false)
+            {
+                Sound_Manager.Instance.PlaySE(SE.SkillGet_D);
+            }
 
             //博士達のフラグや持ち物を代わりにリセット
             Doctor.GetComponent<DoctorManager>().Parts

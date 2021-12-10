@@ -18,6 +18,14 @@ public class Ball : MonoBehaviour
     [Header("ジャママーが入る変数")]
     public GameObject Zyamama;
 
+    [Header("ボールが消滅するまでの時間")]
+    [SerializeField]
+    private float DestroyTime;
+
+    [Header("ボールの縮小速度")]
+    [SerializeField]
+    private float DestoryScale;
+
     public GameObject Doctor;
 
     //移動ベクトルを保存する変数
@@ -42,7 +50,6 @@ public class Ball : MonoBehaviour
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
-
     }
      void Update()
     {
@@ -51,6 +58,17 @@ public class Ball : MonoBehaviour
             Instantiate(this.gameObject, transform.position, Quaternion.identity);
             istrue = false;
         }
+
+        if(DestroyTime <= 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x - DestoryScale, transform.localScale.y - DestoryScale, transform.localScale.z - DestoryScale);
+        }
+        if (transform.localScale.x <= 0)
+        {
+            Zyamama.GetComponent<Jamma>().Shot = false;
+            Destroy(this.gameObject);
+        }
+
     }
 
     void FixedUpdate()
@@ -86,6 +104,10 @@ public class Ball : MonoBehaviour
                 //博士の赤スキルが発動していない時
                 if (Doctor.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Red")
                 {
+                    //カプセルを壊した音を鳴らす
+                    GameObject Director = GameObject.Find("GameDirector");
+                    Director.GetComponent<Game_Director>().BlockBreake = true;
+                    
                     Destroy(hit.gameObject);//カプセルを消す
                 }
                 break;
@@ -97,8 +119,6 @@ public class Ball : MonoBehaviour
             case "Doctor"://博士のスキルが発動してなければ消去
                 if(hit.gameObject.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Blue")
                 {
-                    Debug.Log("博士が被弾したよ");
-
                     //博士にダメージ
                     hit.gameObject.GetComponent<DoctorManager>().Life_Doctor -= 1;
 
@@ -110,7 +130,6 @@ public class Ball : MonoBehaviour
                 break;
 
             case "DestroyZONE":
-                Debug.Log("ジャママーが返せなかったよ");
 
                 //ジャママーの射撃中判定をリセット
                 Zyamama.gameObject.GetComponent<Jamma>().Shot = false;
@@ -131,14 +150,13 @@ public class Ball : MonoBehaviour
         afterReflectVero = rb.velocity;
     }
 
-    /* void OnTriggerEnter(Collider other)
-     {
-         if (other.gameObject.tag.Equals("BallDes"))
-         {
-            Destroy(GetComponent<Collider>().gameObject);
-         }
-     }*/
-    
-
-
+    //カプセルの置いてあるエリアに入ってる間は消滅カウントを進める
+    private void OnTriggerStay(Collider hit)
+    {
+        if (hit.gameObject.name == "BallDestroy")
+        {
+            //消滅までのカウントダウン
+            DestroyTime -= Time.deltaTime;
+        }
+    }
 }
