@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreaeGage : MonoBehaviour
+public class CreateGage : MonoBehaviour
 {
     [Header("’Ç‚¤‘ÎÛ(”m)")]
     [SerializeField]

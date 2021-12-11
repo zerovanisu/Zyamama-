@@ -78,10 +78,12 @@ public class Game_Director : MonoBehaviour
         {
             Doctor_Win = true;
         }
+
+        //オブジェクトが消えると音を鳴らせないので代わりにブロック破壊音を鳴らす
         if (BlockBreake == true)
         {
-            Sound_Manager.Instance.PlaySE(SE.Break_1);
-            Sound_Manager.Instance.PlaySE(SE.Break_2);
+            Sound_Manager.Instance.PlaySE(SE.Break_1,0.6f,0);
+            Sound_Manager.Instance.PlaySE(SE.Break_2,0.6f,0);
             BlockBreake = false;
         }
     }
@@ -118,7 +120,7 @@ public class Game_Director : MonoBehaviour
             //博士が何かしらのスキルを持っていた場合スキル発動音を鳴らす
             if (Doctor.GetComponent<DoctorManager>().SkillName != null && Doctor.GetComponent<DoctorManager>().SkillOn == false)
             {
-                Sound_Manager.Instance.PlaySE(SE.SkillGet_D);
+                Sound_Manager.Instance.PlaySE(SE.SkillGet_D,1,0);
             }
 
             //博士達のフラグや持ち物を代わりにリセット

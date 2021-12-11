@@ -146,7 +146,7 @@ public class Sound_Manager : MonoBehaviour
         return true;
     }
 
-    public bool PlaySE(SE se)
+    public bool PlaySE(SE se, float volume, float PlayTime)
     {
         // SEチャネルから空いてる方を探す
         AudioSource freeChannel = null;
@@ -165,9 +165,20 @@ public class Sound_Manager : MonoBehaviour
             return false;
         }
 
-
+        //音を取得
         freeChannel.clip = Resources.Load<AudioClip>("Sound/" + GetAudioClipName(se));
+        
+        //音量を振り当てる
+        freeChannel.volume = volume;
+
+        //再生開始地点を振り当てる
+        freeChannel.time = PlayTime;
+
+        //再生
         freeChannel.Play();
+
+        //音を元に戻す(音量、再生開始地点)
+        volume = 1;PlayTime = 0;
 
         return true;
     }
