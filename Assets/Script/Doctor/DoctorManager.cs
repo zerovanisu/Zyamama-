@@ -37,6 +37,9 @@ public class DoctorManager : MonoBehaviour
 	[SerializeField]
 	public float Create_Time;
 
+	[SerializeField]
+	GameObject[] Life;
+
 	[Header("処理用変数～触らないでね～")]
 	[SerializeField]
 	private float StickSafety;//コントローラーの微入力をどこまで省くか
@@ -92,6 +95,15 @@ public class DoctorManager : MonoBehaviour
 			{
 				Create();
 			}
+		}
+
+		if (Life_Doctor == 1)
+		{
+			Destroy(Life[1]);
+		}
+		if (Life_Doctor == 0)
+		{
+			Destroy(Life[0]);
 		}
 	}
 

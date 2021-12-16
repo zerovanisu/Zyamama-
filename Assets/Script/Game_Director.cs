@@ -26,6 +26,10 @@ public class Game_Director : MonoBehaviour
     [SerializeField]
     private int Life_Doctor, Life_Zyama;
 
+    [Header("Life画像")]
+    [SerializeField]
+    Image[] Lifeimage_D,Lifeimage_Z;
+
     [Header("内部処理用の変数")]
     [SerializeField]
     private GameObject Generation, Doctor, Hand, Zyama, Robots;
@@ -93,7 +97,7 @@ public class Game_Director : MonoBehaviour
         if(Timmer >= 0)
         {
             //タイマーの更新
-            Count_Text.text = "残り時間 " + Timmer.ToString("F0");
+            Count_Text.text = Timmer.ToString("F0");
         }
         else
         {
