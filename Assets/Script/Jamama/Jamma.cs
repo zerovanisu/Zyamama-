@@ -30,6 +30,9 @@ public class Jamma : MonoBehaviour
     [Header("ボールのプレハブを代入する変数")]
     public GameObject ball;
 
+    [SerializeField]
+    GameObject[] Life;
+
     //スティック入力を格納する変数
     float Horizontal;
 
@@ -75,6 +78,15 @@ public class Jamma : MonoBehaviour
                     Shot = true;
                 }
             }
+        }
+
+        if(Life_Zyama == 1)
+        {
+            Destroy(Life[1]);
+        }
+        if(Life_Zyama == 0)
+        {
+            Destroy(Life[0]);
         }
     }
 
