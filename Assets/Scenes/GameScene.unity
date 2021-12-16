@@ -594,6 +594,7 @@ MonoBehaviour:
   Zyama: {fileID: 212419571}
   Robots: {fileID: 1831367501}
   Count_Text: {fileID: 1932294898}
+  BlockBreake: 0
 --- !u!4 &194891415
 Transform:
   m_ObjectHideFlags: 0
@@ -1215,7 +1216,7 @@ MonoBehaviour:
   Table: {fileID: 308576072763671049, guid: 952e7edc18c062647a056b8bc846d49f, type: 3}
   Parts_No: 5
   TableNo: 2
-  Range_L: {x: -5, y: 0, z: -1.5}
+  Range_L: {x: -5, y: 0, z: -2}
   Range_R: {x: 5, y: 0, z: -1.5}
   Range_x: 3
   Range_z: 2

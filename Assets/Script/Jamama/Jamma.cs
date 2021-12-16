@@ -97,7 +97,7 @@ public class Jamma : MonoBehaviour
         string chackname = collision.gameObject.name.Replace("(Clone)", "");
         if (chackname == "Ball")
         {
-            Sound_Manager.Instance.PlaySE(SE.Bounce);
+            Sound_Manager.Instance.PlaySE(SE.Bounce,0.5f,5.3f);
         }
     }
 }
