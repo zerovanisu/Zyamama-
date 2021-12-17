@@ -35,25 +35,28 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Change_Scene == false)
+        if(Input.GetButtonDown("Åõ_Button"))
+        {
+            Change_Scene = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Change_Scene == false)
         {
             A_Change();
         }
         else
         {
             Alpha_2 += ChangeTime;
-            
+
             BlackImage.color = BlackImage.color = new Color(BlackImage.color.r, BlackImage.color.g, BlackImage.color.b, Alpha_2);
 
-            if(Alpha_2 >= 1)
+            if (Alpha_2 >= 1)
             {
                 SceneManager.LoadScene("GameScene");
             }
-        }
-
-        if(Input.GetButtonDown("Åõ_Button"))
-        {
-            Change_Scene = true;
         }
     }
 
