@@ -27,6 +27,14 @@ public class Ball : MonoBehaviour
     // 跳ね返った後のverocity
     [HideInInspector] public Vector3 afterReflectVero = Vector3.zero;
 
+    public bool isBoostedActived = false; // boostspeed bool
+
+    [SerializeField] 
+    private float BoostTime = 10.0f; // boosting time
+
+    [SerializeField]
+    private float BoostIncrease = 10.0f; // boosting Speed
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,34 +59,39 @@ public class Ball : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
-
-
-    /*void MyInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            speed= 0;
-        }
-        else if(Input.GetKeyUp(KeyCode.Space))
-        {
-            speed = 3;
-        }
-    }*/
-
 
     private void OnCollisionEnter(Collision hit)
     {
         switch(hit.gameObject.tag)
         {
-            case  "SpeedBoost":
-                movespeed = 20f;
-                rb.AddForce((transform.forward + transform.right) * movespeed, ForceMode.VelocityChange);
+            case  "BallSpeed":
+                if(!isBoostedActived)
+                {
+                    movespeed = movespeed * BoostIncrease;
+                }
+                if(!isBoostedActived)
+                {
+                    isBoostedActived = true;
+                    Invoke("EndBosst", BoostTime);
+                }
                 break;
 
-            case "Capsule"://当たったものがカプセル(ブロック)の時
-                Destroy(hit.gameObject);//カプセルを消す
-                break;
+            case "Multiple":
+            //Destroy(hit.gameObject);
+            Instantiate(this.gameObject, transform.position, Quaternion.identity);
+            Destroy(gameObject,10);
+            break;
+
+            case "TimeSpeed":
+            TimeControl.moveTime();
+            Debug.Log("hit");
+            break;
+
+            //case "Capsule"://当たったものがカプセル(ブロック)の時
+            //    Destroy(hit.gameObject);//カプセルを消す
+             //   break;
+
+            
         }
 
         switch(hit.gameObject.name)
@@ -127,12 +140,10 @@ public class Ball : MonoBehaviour
         // 計算した反射ベクトルを保存
         afterReflectVero = rb.velocity;
     }
+    private void EndBosst()
+    {
+        isBoostedActived = false;
+    }
 
-    /* void OnTriggerEnter(Collider other)
-     {
-         if (other.gameObject.tag.Equals("BallDes"))
-         {
-            Destroy(GetComponent<Collider>().gameObject);
-         }
-     }*/
+    
 }

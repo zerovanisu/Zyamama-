@@ -5,39 +5,39 @@ using UnityEngine.UI;
 
 public class Game_Director : MonoBehaviour
 {
-    [Header("§ŒÀŠÔ‚ğ•ÏX‚Å‚«‚é‚æ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private float Timmer;
 
-    [Header("ƒp[ƒcŠi”[”")]
+    [Header("ï¿½pï¿½[ï¿½cï¿½iï¿½[ï¿½ï¿½")]
     [SerializeField]
     private int Point = 0;
 
-    [Header("‘S‘Ì‚Ìƒp[ƒc”")]
+    [Header("ï¿½Sï¿½Ì‚Ìƒpï¿½[ï¿½cï¿½ï¿½")]
     public int Parts_No;
 
-    [Header("”m‚ÌŸ—˜ƒtƒ‰ƒO")]
+    [Header("ï¿½ï¿½ï¿½mï¿½Ìï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O")]
     public bool Doctor_Win = false;
 
-    [Header("ƒWƒƒƒ}ƒ}[‚ÌŸ—˜ƒtƒ‰ƒO")]
+    [Header("ï¿½Wï¿½ï¿½ï¿½}ï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O")]
     public bool Zyama_Win = false;
 
-    [Header("ƒ‰ƒCƒt")]
+    [Header("ï¿½ï¿½ï¿½Cï¿½t")]
     [SerializeField]
     private int Life_Doctor, Life_Zyama;
 
-    [Header("“à•”ˆ——p‚Ì•Ï”")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ì•Ïï¿½")]
     [SerializeField]
     private GameObject Generation, Doctor, Hand, Zyama;
-    [SerializeField]
-    private Text Count_Text;
+    //[SerializeField]
+    //private Text Count_Text;
 
     // Start is called before the first frame update
     void Start()
     {
-        Generation = GameObject.Find("Generation");//ƒp[ƒcŠi”[”»’è‚ğæ“¾
-        Hand = Doctor.GetComponent<DoctorManager>().Hand;//è‚ğæ“¾
-        Parts_No = Generation.GetComponent<PlacementManager>().Parts_No;//‘S‘Ì‚Ìƒp[ƒc”‚ğæ“¾
+        Generation = GameObject.Find("Generation");//ï¿½pï¿½[ï¿½cï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+        Hand = Doctor.GetComponent<DoctorManager>().Hand;//ï¿½ï¿½ï¿½ï¿½æ“¾
+        Parts_No = Generation.GetComponent<PlacementManager>().Parts_No;//ï¿½Sï¿½Ì‚Ìƒpï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
     }
 
     // Update is called once per frame
@@ -45,46 +45,46 @@ public class Game_Director : MonoBehaviour
     {
         Timmer -= Time.deltaTime;
 
-        //‚»‚ê‚¼‚ê‚Ìƒ‰ƒCƒt‚ğæ“¾(XV)
+        //ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½Ìƒï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½æ“¾(ï¿½Xï¿½V)
         Life_Doctor = Doctor.GetComponent<DoctorManager>().Life_Doctor;
         Life_Zyama = Zyama.GetComponent<Jamma>().Life_Zyama;
 
-        //ƒp[ƒc‚ÌŠi”[”‚ª‘S‘Ì‚Ìƒp[ƒc”‚É‚È‚Á‚½
+        //ï¿½pï¿½[ï¿½cï¿½ÌŠiï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ì‚Ìƒpï¿½[ï¿½cï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½
         if(Point == Parts_No)
         {
-            Doctor_Win = true;//”m‚ÌŸ—˜ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-            Debug.Log("”mŸ‚¿");
+            Doctor_Win = true;//ï¿½ï¿½ï¿½mï¿½Ìï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½
+            Debug.Log("ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½");
         }
 
-        //”m‚Ìƒ‰ƒCƒt‚ª0‚É‚È‚Á‚½‚ç
+        //ï¿½ï¿½ï¿½mï¿½Ìƒï¿½ï¿½Cï¿½tï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½
         if(Life_Doctor <= 0)
         {
             Zyama_Win = true;
-            Debug.Log("ƒWƒƒƒ}ƒ}[‚ÌŸ‚¿");
+            Debug.Log("ï¿½Wï¿½ï¿½ï¿½}ï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½");
         }
 
-        //ƒWƒƒƒ}ƒ}[‚Ìƒ‰ƒCƒt‚ª0‚É‚È‚Á‚½‚ç
+        //ï¿½Wï¿½ï¿½ï¿½}ï¿½}ï¿½[ï¿½Ìƒï¿½ï¿½Cï¿½tï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½
         if(Life_Zyama <= 0)
         {
             Doctor_Win = true;
-            Debug.Log("”m‚ÌŸ‚¿");
+            Debug.Log("ï¿½ï¿½ï¿½mï¿½Ìï¿½ï¿½ï¿½");
         }
     }
 
-    private void FixedUpdate()
-    {
-        //ƒ^ƒCƒ}[‚ÌXV
-        Count_Text.text = "c‚èŠÔ " + Timmer.ToString("F2");
-    }
+    //private void FixedUpdate()
+    //{
+        //ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ÌXï¿½V
+    //    Count_Text.text = "ï¿½cï¿½èï¿½ï¿½ " + Timmer.ToString("F2");
+   // }
 
     private void OnTriggerEnter(Collider other)
     {
-        //ƒp[ƒc‚ª”»’è‚ÉG‚ê‚½
+        //ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉGï¿½ê‚½ï¿½ï¿½
         if(other.gameObject.tag == "Robot")
         {
-            Point += 1;//Ši”[”‚ğ‰ÁZ
+            Point += 1;//ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Z
 
-            //”m’B‚Ìƒtƒ‰ƒO‚â‚¿•¨‚ğ‘ã‚í‚è‚ÉƒŠƒZƒbƒg
+            //ï¿½ï¿½ï¿½mï¿½Bï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½âï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½Zï¿½bï¿½g
             Doctor.GetComponent<DoctorManager>().Parts
                 = Hand.GetComponent<DoctorHand>().Parts
                 = null;
@@ -93,11 +93,11 @@ public class Game_Director : MonoBehaviour
             Hand.GetComponent<DoctorHand>().OnParts
                 = false;
 
-            Doctor.GetComponent<DoctorManager>().SkillOn = true;//”m‚ÌƒXƒLƒ‹‚ğ”­“®‚³‚¹‚é
-            Doctor.GetComponent<DoctorManager>().Skill_Keep = false;//”m‚Ì‰ÁHŒãƒp[ƒcæ“¾ó‚ğƒŠƒZƒbƒg
+            Doctor.GetComponent<DoctorManager>().SkillOn = true;//ï¿½ï¿½ï¿½mï¿½ÌƒXï¿½Lï¿½ï¿½ï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Doctor.GetComponent<DoctorManager>().Skill_Keep = false;//ï¿½ï¿½ï¿½mï¿½Ì‰ï¿½ï¿½Hï¿½ï¿½pï¿½[ï¿½cï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
 
-            Destroy(other.gameObject);//ƒp[ƒc‚ğÁ‹
-            Debug.Log("”m‚Ìƒ|ƒCƒ“ƒg" + Point + "/" + Parts_No);
+            Destroy(other.gameObject);//ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Debug.Log("ï¿½ï¿½ï¿½mï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½g" + Point + "/" + Parts_No);
         }
     }
 }

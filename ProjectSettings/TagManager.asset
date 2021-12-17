@@ -9,6 +9,9 @@ TagManager:
   - CreateTable
   - ball
   - Capsule
+  - BallSpeed
+  - Multiple
+  - TimeSpeed
   layers:
   - Default
   - TransparentFX

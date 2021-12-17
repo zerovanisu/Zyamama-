@@ -130,3 +130,6 @@ MonoBehaviour:
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
+  isBoostedActived: 0
+  BoostTime: 10
+  BoostIncrease: 20
