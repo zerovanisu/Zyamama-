@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game_Director : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class Game_Director : MonoBehaviour
     [Header("Life画像")]
     [SerializeField]
     Image[] Lifeimage_D,Lifeimage_Z;
+
+    [SerializeField]
+    Text JudgeText;
 
     [Header("内部処理用の変数")]
     [SerializeField]
@@ -90,6 +94,23 @@ public class Game_Director : MonoBehaviour
             Sound_Manager.Instance.PlaySE(SE.Break_2,0.6f,0);
             BlockBreake = false;
         }
+
+        if (Doctor_Win == true && Zyama_Win == false)
+        {
+            JudgeText.text = "博士の勝ち！";
+        }
+        else if (Zyama_Win == true && Doctor_Win == false)
+        {
+            JudgeText.text = "ジャママーの勝ち！";
+        }
+
+        if(Doctor_Win == true || Zyama_Win == true)
+        {
+            if (Input.GetButtonDown("×_Button"))
+            {
+                SceneManager.LoadScene("TitleScene");
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -101,14 +122,7 @@ public class Game_Director : MonoBehaviour
         }
         else
         {
-            if(Doctor_Win == true)
-            {
-                Count_Text.text = "博士の勝ち！";
-            }
-            else if(Zyama_Win == true)
-            {
-                Count_Text.text = "ジャママーの勝ち！";
-            }
+            Count_Text.text = "0:00";
         }
     }
 

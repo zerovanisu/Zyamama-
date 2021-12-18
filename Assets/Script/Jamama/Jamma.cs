@@ -66,7 +66,7 @@ public class Jamma : MonoBehaviour
             }
 
             //発射処理
-            if (Input.GetButtonDown("X_Button_2"))
+            if (Input.GetButtonDown("〇_Button_2"))
             {
                 if (Shot == false)
                 {
