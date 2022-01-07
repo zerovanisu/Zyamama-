@@ -45,6 +45,20 @@ public class Ball : MonoBehaviour
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
+        /*
+         int randomNumber = Random.Range(0,2);
+
+         switch(randomNumber)
+         {
+             case 0:
+             rb.Addforce((transform.forward + transform.right * -1) * movespeed, ForceMode.Impulse);
+             break;
+
+             case 1:
+             rb.Addforce((transform.forward + transform.right) * movespeed, ForceMode.Impulse);
+             break:
+         }
+        */
     }
      void Update()
     {

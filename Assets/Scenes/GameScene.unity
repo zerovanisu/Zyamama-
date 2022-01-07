@@ -653,7 +653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212419571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57741be09756f2a4faac0bb4e112ec5a, type: 3}
   m_Name: 
@@ -2064,6 +2064,14 @@ PrefabInstance:
     - target: {fileID: 1304150038308203303, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2006671457652312174, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2006671457652312174, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2006671457652312174, guid: 166a066d1ae5c2244b9085be9d36922b, type: 3}
       propertyPath: m_Constraints
