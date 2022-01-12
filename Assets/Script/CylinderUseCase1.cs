@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CylinderUseCase : MonoBehaviour
 {
-      //  内部オブジェクトリスト
+    //  内部オブジェクトリスト
     [SerializeField]
     private List<GameObject> _itemObject = new List<GameObject>();
 
@@ -32,5 +32,13 @@ public class CylinderUseCase : MonoBehaviour
     public void ClearItem()
     {
         _itemObject.ForEach(item => item.SetActive(false));
+    }
+
+    private void OnCollisionEnter(Collision hit)
+    {
+        if(hit.gameObject.tag == "ball")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
