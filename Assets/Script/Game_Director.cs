@@ -8,7 +8,7 @@ public class Game_Director : MonoBehaviour
 {
     [Header("制限時間を変更できるよ")]
     [SerializeField]
-    private float Timmer;
+    public float Timer;
 
     [Header("パーツ格納数")]
     [SerializeField]
@@ -39,7 +39,8 @@ public class Game_Director : MonoBehaviour
     private GameObject Generation, Doctor, Hand, Zyama, Robots;
     [SerializeField]
     private Text Count_Text;
-    public bool BlockBreake;//ジャママーのブロック破壊音を鳴らすフラグ
+    public bool Block_Breake;//ジャママーのブロック破壊音を鳴らすフラグ
+    public bool Time_SKill;//ジャママーの時間加速スキルが発動しているかのフラグ
 
     // Start is called before the first frame update
     void Start()
@@ -52,18 +53,8 @@ public class Game_Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //カウントが終わっていない時
-        if(Timmer >= 0)
-        {
-            //カウントを進める
-            Timmer -= Time.deltaTime;
-        }
-        //カウントが終わったら
-        else
-        {
-            //ジャママーの勝ちにする
-            Zyama_Win = true;
-        }
+        //タイマー処理
+        Count();
 
         //それぞれのライフを取得(更新)
         Life_Doctor = Doctor.GetComponent<DoctorManager>().Life_Doctor;
@@ -75,24 +66,56 @@ public class Game_Director : MonoBehaviour
             Doctor_Win = true;//博士の勝利フラグを立てる
         }
 
+        //オブジェクトが消えると音を鳴らせないので代わりにブロック破壊音を鳴らす
+        if (Block_Breake == true)
+        {
+            Sound_Manager.Instance.PlaySE(SE.Break_1,0.6f,0);
+            Sound_Manager.Instance.PlaySE(SE.Break_2,0.6f,0);
+            Block_Breake = false;
+        }
+
+        //タイトルに戻る
+        if (Doctor_Win == true || Zyama_Win == true)
+        {
+            if (Input.GetButtonDown("×_Button"))
+            {
+                SceneManager.LoadScene("TitleScene");
+            }
+        }
+
+        Juge();
+    }
+
+    //タイマー処理
+    void Count()
+
+    {
+        //カウントが終わっていない時 & ジャママーのスキルが発動していないとき
+        if (Timer > 0 && Time_SKill == false)
+        {
+            //カウントを進める
+            Timer -= Time.deltaTime;
+        }
+        //カウントが終わったら
+        if (Timer <= 0)
+        {
+            //ジャママーの勝ちにする
+            Zyama_Win = true;
+        }
+    }
+
+    void Juge()
+    {
         //博士のライフが0になったら
-        if(Life_Doctor <= 0)
+        if (Life_Doctor <= 0)
         {
             Zyama_Win = true;
         }
 
         //ジャママーのライフが0になったら
-        if(Life_Zyama <= 0)
+        if (Life_Zyama <= 0)
         {
             Doctor_Win = true;
-        }
-
-        //オブジェクトが消えると音を鳴らせないので代わりにブロック破壊音を鳴らす
-        if (BlockBreake == true)
-        {
-            Sound_Manager.Instance.PlaySE(SE.Break_1,0.6f,0);
-            Sound_Manager.Instance.PlaySE(SE.Break_2,0.6f,0);
-            BlockBreake = false;
         }
 
         if (Doctor_Win == true && Zyama_Win == false)
@@ -103,22 +126,13 @@ public class Game_Director : MonoBehaviour
         {
             JudgeText.text = "ジャママーの勝ち！";
         }
-
-        if(Doctor_Win == true || Zyama_Win == true)
-        {
-            if (Input.GetButtonDown("×_Button"))
-            {
-                SceneManager.LoadScene("TitleScene");
-            }
-        }
     }
-
     private void FixedUpdate()
     {
-        if(Timmer >= 0)
+        if(Timer >= 0)
         {
             //タイマーの更新
-            Count_Text.text = Timmer.ToString("F0");
+            Count_Text.text = Timer.ToString("F0");
         }
         else
         {

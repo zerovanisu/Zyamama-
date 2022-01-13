@@ -36,7 +36,17 @@ public class Ball : MonoBehaviour
 
     // 跳ね返った後のverocity
     [HideInInspector] public Vector3 afterReflectVero = Vector3.zero;
-    
+
+    //付け加えたもの～ここから～
+    public bool isBoostedActived = false; // boostspeed bool
+
+    [SerializeField]
+    private float BoostTime = 10.0f; // boosting time
+
+    [SerializeField]
+    private float BoostIncrease = 10.0f; // boosting Speed
+    //付け加えたもの～ここまで～
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +54,6 @@ public class Ball : MonoBehaviour
         Zyamama = GameObject.Find("Zyamama");
         Doctor = GameObject.Find("Doctor");
         rb = this.GetComponent<Rigidbody>();
-        //float randomValue = Random.Range(-100f, 10f);
-        //int xComponent = (int)Mathf.Sign(randomValue);
         pos = new Vector3(movespeed, 0, movespeed);
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
@@ -71,43 +79,37 @@ public class Ball : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-    }
-
-    // Update is called once per frame
-
-
-    /*void MyInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            speed= 0;
-        }
-        else if(Input.GetKeyUp(KeyCode.Space))
-        {
-            speed = 3;
-        }
-    }*/
-
-
     private void OnCollisionEnter(Collision hit)
     {
-        switch(hit.gameObject.tag)
+        switch (hit.gameObject.tag)
         {
-            case  "SpeedBoost":
-                movespeed = 20f;
-                rb.AddForce((transform.forward + transform.right) * movespeed, ForceMode.VelocityChange);
-                break;
-
             case "Capsule"://当たったものがカプセル(ブロック)の時
                 //博士の赤スキルが発動していない時
                 if (Doctor.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Red")
                 {
                     //カプセルを壊した音を鳴らす
                     GameObject Director = GameObject.Find("GameDirector");
-                    Director.GetComponent<Game_Director>().BlockBreake = true;
-                    
+                    Director.GetComponent<Game_Director>().Block_Breake = true;
+
+                    //そのカプセルがスキルを持っていたらスキルを発動させる
+                    string Skill_Name = hit.gameObject.GetComponent<BlockManager>().Skill_Name;
+
+                    switch(Skill_Name)
+                    {
+                        case "SpeedBoost"://青
+                            break;
+
+                        case "MultipleBall"://黄
+                            break;
+
+                        case "TimeFast"://赤
+                            Zyamama.GetComponent<Jamma>().Skill_3 = true;
+                            break;
+
+                        default:
+                            break;
+                    }
+
                     Destroy(hit.gameObject);//カプセルを消す
                 }
                 break;
