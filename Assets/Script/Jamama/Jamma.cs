@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class Jamma : MonoBehaviour
 {
-    /*public float speed = 1f; // to adjust player movement speed in unity
-    
-    void Update()
-    {
-        float xDirection = Input.GetAxis("Horizontal"); // A/S Keyword
-        
-        Vector3 moveDirection = new Vector3(xDirection, 0.0f); //to move X direction 
-
-        transform.position += moveDirection * speed; // add speed 
-    }*/
-
     [Header("ライフが変更できるよ")]
     public int Life_Zyama;
 
@@ -25,13 +14,25 @@ public class Jamma : MonoBehaviour
     [SerializeField]
     private float SlowSpeed;
 
-    private Rigidbody rb;//リジッドボディ
-
     [Header("ボールのプレハブを代入する変数")]
     public GameObject ball;
 
+    [Header("(スキル)カウントダウンの速度")]
+    [SerializeField]
+    public float Skill_Count;
+
+    [Header("(スキル)加速スキルの効果時間")]
+    [SerializeField]
+    private float Time_Over;
+
+    [Header("GameDirector")]
+    [SerializeField]
+    public GameObject GameDirector;
+
     [SerializeField]
     GameObject[] Life;
+
+    private Rigidbody rb;
 
     //スティック入力を格納する変数
     float Horizontal;
@@ -41,6 +42,9 @@ public class Jamma : MonoBehaviour
     public bool Frieze = false;//操作を停止させるフラグ(ポーズ等)
 
     public bool Shot = false;//玉を射出しているかの判定
+
+    public bool Skill_3 = false;//時間を加速するスキル
+    float Timer;
 
     private void Start()
     {
@@ -80,6 +84,7 @@ public class Jamma : MonoBehaviour
             }
         }
 
+        //あとでここの処理まとめよう
         if(Life_Zyama == 1)
         {
             Destroy(Life[1]);
@@ -87,6 +92,11 @@ public class Jamma : MonoBehaviour
         if(Life_Zyama == 0)
         {
             Destroy(Life[0]);
+        }
+
+        if (Skill_3 == true)
+        {
+            Skill_Move_3();
         }
     }
 
@@ -100,6 +110,39 @@ public class Jamma : MonoBehaviour
         else
         {
             rb.velocity = new Vector3 (0,0,0);
+        }
+    }
+
+    //ジャママーの移動が速くなるスキル
+    private void Skill_Move_1()
+    {
+
+    }
+
+    //ボールが2つになるスキル
+    private void Skill_Move_2()
+    {
+
+    }
+
+    //制限時間が短くなる
+    private void Skill_Move_3()
+    {
+        //ローカル変数に保存して書きやすくする
+        bool Skill = GameDirector.GetComponent<Game_Director>().Time_SKill = true;
+
+        //ゲームの制限時間を取得
+        Timer = GameDirector.GetComponent<Game_Director>().Timer;
+
+        Timer -= Skill_Count;//制限時間のカウントダウン
+
+        Time_Over -= Time.deltaTime;//スキル継続時間のカウントダウン
+
+        //スキルの時間が切れたらフラグを元に戻す
+        if(Time_Over <= 0)
+        {
+            Skill = false;
+            Skill_3 = false;
         }
     }
 

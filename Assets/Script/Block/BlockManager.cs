@@ -2,34 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockManger : MonoBehaviour
+public class BlockManager : MonoBehaviour
 {
     //[SerializeField]
    // public int SkillUp;
-   public string Skillname;
-    public int Skillnumber;
+   public string Skill_Name;
+    public int Skill_Number;
     // Start is called before the first frame update
     void Start()
     {
-      
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch (Skillnumber)
+        switch (Skill_Number)
         {
             case 0:
-                Skillname = null;
+                Skill_Name = null;
                 break;
             case 1:
-                Skillname = "SpeedBoost";
+                Skill_Name = "SpeedBoost";
                 break;
             case 2:
-                Skillname = "MultipleBall";
+                Skill_Name = "MultipleBall";
                 break;
             case 3:
-                Skillname = "TimeFast";
+                Skill_Name = "TimeFast";
                 break;
         }
     }

@@ -7,9 +7,9 @@ public class CreateGage : MonoBehaviour
 {
     [Header("追う対象(博士)")]
     [SerializeField]
-    private Transform targetTfm;
+    private Transform TargetTfm;
 
-    private RectTransform myRectTfm;//この画像の座標
+    private RectTransform MyRectTfm;//この画像の座標
 
     [Header("作業時間")]
     public float CreateTime;
@@ -30,7 +30,7 @@ public class CreateGage : MonoBehaviour
 
     void Start()
     {
-        myRectTfm = GetComponent<RectTransform>();//現在の座標を保存
+        MyRectTfm = GetComponent<RectTransform>();//現在の座標を保存
         GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
         Doctor = GameObject.Find("Doctor");
     }
@@ -38,7 +38,7 @@ public class CreateGage : MonoBehaviour
     void Update()
     {
         //ターゲットを追う
-        myRectTfm.position　= RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position + offset);
+        MyRectTfm.position　= RectTransformUtility.WorldToScreenPoint(Camera.main, TargetTfm.position + offset);
 
         //ゲージ画像に作業時間を反映させる
         GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;

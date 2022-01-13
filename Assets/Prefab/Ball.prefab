@@ -130,10 +130,13 @@ MonoBehaviour:
   istrue: 0
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}
-  DestroyTime: 10
-  DestoryScale: 0.001
+  DestroyTime: 6
+  DestoryScale: 0.01
   Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
+  isBoostedActived: 0
+  BoostTime: 10
+  BoostIncrease: 10
 --- !u!1001 &6081328925556683899
 PrefabInstance:
   m_ObjectHideFlags: 0
