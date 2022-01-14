@@ -130,8 +130,8 @@ MonoBehaviour:
   istrue: 0
   ballOriginal: {fileID: 304130431323708524}
   Zyamama: {fileID: 0}
-  DestroyTime: 6
-  DestoryScale: 0.01
+  DestroyTime: 3
+  DestoryScale: 0.02
   Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
   isBoostedActived: 0

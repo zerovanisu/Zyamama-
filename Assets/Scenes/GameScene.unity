@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a856fd7b90942468fc5c39045d2cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 0
+  Timer: 120
   Point: 0
   Parts_No: 0
   Doctor_Win: 0
@@ -750,8 +750,8 @@ MonoBehaviour:
   Speed: 10
   SlowSpeed: 3
   ball: {fileID: 304130431323708524, guid: 1d6e81dd83498d641a5b3ee631febd28, type: 3}
-  Skill_Count: 0
-  Time_Over: 0
+  Skill_Count: 3
+  Time_Over: 1
   GameDirector: {fileID: 194891413}
   Life:
   - {fileID: 2091213618}
