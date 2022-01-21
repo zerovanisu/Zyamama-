@@ -72,7 +72,7 @@ public class Jamma : MonoBehaviour
             //発射処理
             if (Input.GetButtonDown("〇_Button_2"))
             {
-                if (Shot == false)
+                if (Shot == false && Life_Zyama > 0)
                 {
                     Vector3 tmp = this.gameObject.transform.position;
                     tmp.z = this.gameObject.transform.position.z + 1.4f;
