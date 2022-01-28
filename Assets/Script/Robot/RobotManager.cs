@@ -8,6 +8,12 @@ public class RobotManager : MonoBehaviour
     [SerializeField]
     public GameObject Head, Arm_L, Arm_R, Leg_L, Leg_R;
 
+    [Header("ゲームディレクター")]
+    [SerializeField]
+    GameObject GameDirector;
+
+    Animator Anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +23,24 @@ public class RobotManager : MonoBehaviour
         Arm_R.SetActive(false);
         Leg_L.SetActive(false);
         Leg_R.SetActive(false);
+
+        Anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameDirector.GetComponent<Game_Director>().GameSet == true)
+        {
+            Anim.SetTrigger("Win");
+            Head.SetActive(true);
+            Arm_L.SetActive(true);
+            Arm_R.SetActive(true);
+            Leg_L.SetActive(true);
+            Leg_R.SetActive(true);
+
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     //パーツを合体させる処理
