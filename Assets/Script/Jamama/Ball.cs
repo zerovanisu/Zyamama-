@@ -37,15 +37,10 @@ public class Ball : MonoBehaviour
     // 跳ね返った後のverocity
     [HideInInspector] public Vector3 afterReflectVero = Vector3.zero;
 
-    //付け加えたもの～ここから～
-    public bool isBoostedActived = false; // boostspeed bool
-
-    [SerializeField]
-    private float BoostTime = 10.0f; // boosting time
-
-    [SerializeField]
-    private float BoostIncrease = 10.0f; // boosting Speed
-    //付け加えたもの～ここまで～
+    //ボールスビートアップ
+    private float BallboostTimer;
+    public float BallBoostedSpeed;
+    public bool Ballboosting;
 
 
     // Start is called before the first frame update
@@ -58,12 +53,18 @@ public class Ball : MonoBehaviour
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
+        //ボールスビート
+        movespeed = 0.05f;
+        BallboostTimer = 0;
+        Ballboosting = false;
     }
      void Update()
     {
+        //ボールを増やす
         if (istrue == true)
         {
             Instantiate(this.gameObject, transform.position, Quaternion.identity);
+            Destroy(this.gameObject,10);
             istrue = false;
         }
 
@@ -76,7 +77,27 @@ public class Ball : MonoBehaviour
             Zyamama.GetComponent<Jamma>().Shot = false;
             Destroy(this.gameObject);
         }
-
+        //ボールスビート
+        if(Ballboosting)
+        {
+            BallboostTimer += Time.deltaTime;
+            if(BallboostTimer >= 10)
+            {
+                speed = 0.05f;
+                BallboostTimer = 0;
+                Ballboosting = false;
+            }
+        }
+        BallSpeed();
+    }
+    //ボールスビート
+    private void BallSpeed()
+    {
+        if(Ballboosting == true)
+        {
+            movespeed = movespeed + BallBoostedSpeed;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision hit)
@@ -97,9 +118,11 @@ public class Ball : MonoBehaviour
                     switch(Skill_Name)
                     {
                         case "SpeedBoost"://青
+                            Zyamama.GetComponent<Jamma>().Skill_1 = true;
                             break;
 
                         case "MultipleBall"://黄
+                            Zyamama.GetComponent<Jamma>().Skill_2 = true;
                             break;
 
                         case "TimeFast"://赤
@@ -107,6 +130,7 @@ public class Ball : MonoBehaviour
                             break;
 
                         default:
+                            Zyamama.GetComponent<Jamma>().Skill_4 = true;
                             break;
                     }
 
