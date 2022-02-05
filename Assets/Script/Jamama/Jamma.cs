@@ -42,13 +42,24 @@ public class Jamma : MonoBehaviour
     public bool Frieze = false;//操作を停止させるフラグ(ポーズ等)
 
     public bool Shot = false;//玉を射出しているかの判定
+    public bool Skill_1 = false;//ボールをスビートアップ
+
+    public bool Skill_2 = false;//ボールを増やす
 
     public bool Skill_3 = false;//時間を加速するスキル
     float Timer;
 
+    public bool Skill_4 = false;//じゃままーを増やす
+    public GameObject JammaClone;
+    public GameObject JammaClone1;
+    public bool active;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //じゃままーを増やす
+        JammaClone.SetActive (false);
+        JammaClone1.SetActive(false);
     }
 
     void Update()
@@ -83,6 +94,17 @@ public class Jamma : MonoBehaviour
                 }
             }
         }
+        //じゃままーを増やす
+        if(active == true)
+        {
+            JammaClone.SetActive (true);
+            JammaClone1.SetActive(true);
+            StartCoroutine(SetFalse());
+        }  
+        else{
+            JammaClone.SetActive (false);
+            JammaClone1.SetActive(false);
+        }
 
         //あとでここの処理まとめよう
         if(Life_Zyama == 1)
@@ -93,13 +115,28 @@ public class Jamma : MonoBehaviour
         {
             Destroy(Life[0]);
         }
-
+        if (Skill_1 == true)
+        {
+            Skill_Move_1();
+        }
+        if (Skill_2 == true)
+        {
+            Skill_Move_2();
+        }
         if (Skill_3 == true)
         {
             Skill_Move_3();
         }
+        if (Skill_4 == true)
+        {
+            Skill_Move_4();
+        }
     }
-
+    IEnumerator SetFalse()
+    {
+        yield return new WaitForSeconds(10);
+        active = false;
+    }
     void FixedUpdate()
     {
         if (Frieze == false)
@@ -116,14 +153,15 @@ public class Jamma : MonoBehaviour
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-
+        GetComponent<ball>().Ballboosting = ture;
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-
+        GetComponent<ball>().istrue = true;
     }
+    
 
     //制限時間が短くなる
     private void Skill_Move_3()
@@ -144,6 +182,10 @@ public class Jamma : MonoBehaviour
             Skill = false;
             Skill_3 = false;
         }
+    }
+    private void Skill_Move_4()
+    {
+        active = true;
     }
 
     private void OnCollisionEnter(Collision collision)
