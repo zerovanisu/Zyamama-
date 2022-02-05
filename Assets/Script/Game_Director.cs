@@ -31,16 +31,40 @@ public class Game_Director : MonoBehaviour
     [SerializeField]
     Image[] Lifeimage_D,Lifeimage_Z;
 
+    [Header("勝利モーション用カメラ")]
     [SerializeField]
-    Text JudgeText;
+    GameObject Doctor_Camera, Jamama_Camera;
+
+    [Header("デフォルトのカメラ")]
+    [SerializeField]
+    GameObject Main_Camera;
+
+    [Header("シェードインが始まるまでの時間")]
+    [SerializeField]
+    float Victory_Time_Max;
+
+    [Header("シェードアウトが終わってから動き始めるまでの時間")]
+    [SerializeField]
+    float Motion_Time_Max;
 
     [Header("内部処理用の変数")]
     [SerializeField]
     private GameObject Generation, Doctor, Hand, Zyama, Robots;
     [SerializeField]
-    private Text Count_Text;
+    Text JudgeText, Count_Text;
+
+    [System.NonSerialized]
     public bool Block_Breake;//ジャママーのブロック破壊音を鳴らすフラグ
+
+    [System.NonSerialized]
     public bool Time_SKill;//ジャママーの時間加速スキルが発動しているかのフラグ
+
+    [System.NonSerialized] 
+    public float Victory_Time, Motion_Time;
+
+    [System.NonSerialized]
+    public bool GameSet;
+    Animator Zamama_Anim,Doctor_Anim;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +72,16 @@ public class Game_Director : MonoBehaviour
         Generation = GameObject.Find("Generation");//パーツ格納判定を取得
         Hand = Doctor.GetComponent<DoctorManager>().Hand;//手を取得
         Parts_No = Generation.GetComponent<PlacementManager>().Parts_No;//全体のパーツ数を取得
+        Doctor_Camera.SetActive(false);Jamama_Camera.SetActive(false);//勝利用カメラを切る
+        Main_Camera.SetActive(true);
+
+        GameSet = false;
+
+        Zamama_Anim = Zyama.GetComponent<Animator>();
+        Doctor_Anim = Doctor.GetComponent<Animator>();
+
+        Victory_Time = Victory_Time_Max;
+        Motion_Time = Motion_Time_Max;
     }
 
     // Update is called once per frame
@@ -86,6 +120,24 @@ public class Game_Director : MonoBehaviour
         Juge();
     }
 
+    private void FixedUpdate()
+    {
+        if (Timer >= 0)
+        {
+            //タイマーの更新
+            Count_Text.text = Timer.ToString("F0");
+        }
+        else
+        {
+            Count_Text.text = "0:00";
+        }
+
+        if (GameSet == true)
+        {
+            Victory();
+        }
+    }
+
     //タイマー処理
     void Count()
 
@@ -118,26 +170,55 @@ public class Game_Director : MonoBehaviour
             Doctor_Win = true;
         }
 
+        if (Doctor_Win == true || Zyama_Win == true)
+        {
+            Zyama.GetComponent<Jamma>().Frieze = Doctor.GetComponent<DoctorManager>().Frieze = true;
+            
+            JudgeText.text = "ゲームセット！";
+
+            //遷移のカウントダウン
+            Victory_Time -= Time.deltaTime;
+        }
+    }
+
+    public void Victory()
+    {
+        ////カメラ処理////
+        Main_Camera.SetActive(false);
+
+        if(Doctor_Win == true)
+        {
+            Doctor_Camera.SetActive(true);
+        }
+        else if(Zyama_Win == true)
+        {
+            Jamama_Camera.SetActive(true);
+        }
+
+        Motion_Time -= Time.deltaTime;
+
+        ////プレイヤーの処理////
         if (Doctor_Win == true && Zyama_Win == false)
         {
-            JudgeText.text = "博士の勝ち！";
+            //博士が勝った時の挙動
+            if(Motion_Time <= 0)
+            {
+                JudgeText.text = "博士の勝ち！";
+
+                Doctor_Anim.SetTrigger("Win");
+            }
         }
         else if (Zyama_Win == true && Doctor_Win == false)
         {
-            JudgeText.text = "ジャママーの勝ち！";
+            //ジャママーが勝った時の挙動
+            if (Motion_Time <= 0)
+            {
+                JudgeText.text = "ジャママーの勝ち！";
+
+                Zamama_Anim.SetTrigger("Win");
+            }
         }
-    }
-    private void FixedUpdate()
-    {
-        if(Timer >= 0)
-        {
-            //タイマーの更新
-            Count_Text.text = Timer.ToString("F0");
-        }
-        else
-        {
-            Count_Text.text = "0:00";
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
