@@ -52,6 +52,7 @@ public class DoctorManager : MonoBehaviour
 	private bool Create_now;//作業している時はtrue
 	public float Createnow_Time = 0;//作業時間を測る用の変数
 	Rigidbody rb;
+	Animator Am;
 
 	//最終入力を保存する変数
 	Quaternion LastRotation;
@@ -65,6 +66,7 @@ public class DoctorManager : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		Am = GetComponent<Animator>();
 		SkillName = null;
 	}
 
@@ -115,12 +117,16 @@ public class DoctorManager : MonoBehaviour
 			//入力が極僅かな場合は移動量をなくす
 			if (Horizontal >= StickSafety || Vertical >= StickSafety || Horizontal <= -StickSafety || Vertical <= -StickSafety)
 			{
+				Am.SetBool("Walk",true);
+
 				//移動量を振り当てる(実際に移動させる)処理
 				rb.velocity = direction;
 			}
 			else
             {
-				rb.velocity = new Vector3 (0, transform.position.y, 0);
+				Am.SetBool("Walk", false);
+
+				rb.velocity = new Vector3 (0, 0, 0);
 			}
 		}
 		else
@@ -137,6 +143,8 @@ public class DoctorManager : MonoBehaviour
 		//作業中のフラグがオンの時
 		if (Create_now == true)
 		{
+			Am.SetBool("Build",true);
+
 			//動作を受け付けないように停止フラグを立てる
 			Frieze = true;
 
@@ -146,6 +154,8 @@ public class DoctorManager : MonoBehaviour
 			//時間が過ぎたらフラグのリセット
 			if (Createnow_Time <= 0)
 			{
+				Am.SetBool("Build", false);
+
 				Create_now = false;//作業中フラグ
 				Frieze = false;//停止フラグ
 				Skill_Keep = true;//加工後パーツの取得状況
@@ -166,10 +176,8 @@ public class DoctorManager : MonoBehaviour
 			//向いた方向を保存
 			LastRotation = transform.localRotation;
 		}
-		//無入力状態だったら
 		else
-		{
-			//保存していた方向に向かせておく
+        {
 			transform.localRotation = LastRotation;
 		}
 	}
@@ -190,7 +198,7 @@ public class DoctorManager : MonoBehaviour
             }
 			//掴んでいる時(離す)
 			else if(Catching == true)
-            {
+			{
 				//パーツの掴んでいる判定を取り消す(離す)
 				Catching = Parts.GetComponent<PartsManager>().Catching = false;
 
@@ -198,6 +206,15 @@ public class DoctorManager : MonoBehaviour
 				Parts = null;
 			}
         }
+
+		if(Catching == true)
+		{
+			Am.SetBool("Hold", true);
+		}
+		else
+        {
+			Am.SetBool("Hold", false);
+		}
     }
 
 	void Create()

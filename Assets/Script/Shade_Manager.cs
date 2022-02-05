@@ -35,11 +35,11 @@ public class Shade_Manager : MonoBehaviour
         Change_In = Change_Out = false;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        if(GameDirector.GetComponent<Game_Director>().Victory_Time <= 0)
+        if (GameDirector.GetComponent<Game_Director>().Victory_Time <= 0)
         {
-            if(Change_Start == false)
+            if (Change_Start == false)
             {
                 Shade.gameObject.SetActive(true);
                 Shade.color = new Color(Color_R, Color_G, Color_B, 0);
@@ -47,12 +47,12 @@ public class Shade_Manager : MonoBehaviour
             }
 
 
-            if(Change_Start && Change_In == false)
+            if (Change_Start && Change_In == false)
             {
                 Shade_In();
             }
 
-            if(Change_Out == true)
+            if (Change_Out == true)
             {
                 Shade_Out();
             }

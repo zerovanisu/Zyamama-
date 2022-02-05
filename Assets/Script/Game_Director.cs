@@ -64,7 +64,7 @@ public class Game_Director : MonoBehaviour
 
     [System.NonSerialized]
     public bool GameSet;
-    Animator Zamama_Anim,Doctor_Anim;
+    Animator Zamama_Anim;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +78,6 @@ public class Game_Director : MonoBehaviour
         GameSet = false;
 
         Zamama_Anim = Zyama.GetComponent<Animator>();
-        Doctor_Anim = Doctor.GetComponent<Animator>();
 
         Victory_Time = Victory_Time_Max;
         Motion_Time = Motion_Time_Max;
@@ -204,8 +203,6 @@ public class Game_Director : MonoBehaviour
             if(Motion_Time <= 0)
             {
                 JudgeText.text = "博士の勝ち！";
-
-                Doctor_Anim.SetTrigger("Win");
             }
         }
         else if (Zyama_Win == true && Doctor_Win == false)
@@ -214,8 +211,6 @@ public class Game_Director : MonoBehaviour
             if (Motion_Time <= 0)
             {
                 JudgeText.text = "ジャママーの勝ち！";
-
-                Zamama_Anim.SetTrigger("Win");
             }
         }
 

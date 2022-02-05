@@ -30,7 +30,7 @@ public class RobotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameDirector.GetComponent<Game_Director>().GameSet == true)
+        if(GameDirector.GetComponent<Game_Director>().GameSet == true && GameDirector.GetComponent<Game_Director>().Doctor_Win == true)
         {
             Anim.SetTrigger("Win");
             Head.SetActive(true);
