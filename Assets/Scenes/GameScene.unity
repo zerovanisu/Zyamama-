@@ -766,7 +766,13 @@ MonoBehaviour:
   - {fileID: 1221452648}
   Frieze: 0
   Shot: 0
+  Skill_1: 0
+  Skill_2: 0
   Skill_3: 0
+  Skill_4: 0
+  JammaClone: {fileID: 212419571}
+  JammaClone1: {fileID: 212419571}
+  active: 0
 --- !u!95 &212419573
 Animator:
   serializedVersion: 3

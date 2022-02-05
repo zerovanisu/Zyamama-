@@ -398,3 +398,33 @@ C# parse time         : 144ms
 candidates check time : 44ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 2/5/2022 10:48:22 PM : Starting /Users/minhtetnaing/Desktop/c++/2020.3.12f1/Unity.app/Contents/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 1156.665ms
+moved types parse time: 137ms
+candidates parse time : 6ms
+C# parse time         : 596ms
+candidates check time : 251ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 2/5/2022 10:48:49 PM : Starting /Users/minhtetnaing/Desktop/c++/2020.3.12f1/Unity.app/Contents/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 218.136ms
+moved types parse time: 137ms
+candidates parse time : 6ms
+C# parse time         : 505ms
+candidates check time : 224ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 2/5/2022 10:49:11 PM : Starting /Users/minhtetnaing/Desktop/c++/2020.3.12f1/Unity.app/Contents/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 186.923ms
+moved types parse time: 163ms
+candidates parse time : 10ms
+C# parse time         : 605ms
+candidates check time : 211ms
+console write time    : 3ms
+

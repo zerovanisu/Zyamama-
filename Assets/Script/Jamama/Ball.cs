@@ -83,7 +83,7 @@ public class Ball : MonoBehaviour
             BallboostTimer += Time.deltaTime;
             if(BallboostTimer >= 10)
             {
-                speed = 0.05f;
+                movespeed = 0.05f;
                 BallboostTimer = 0;
                 Ballboosting = false;
             }

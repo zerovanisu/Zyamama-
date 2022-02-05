@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class CreateGage : MonoBehaviour
 {
-    [Header("’Ç‚¤‘ÎÛ(”m)")]
+    [Header("ï¿½Ç‚ï¿½ï¿½Îï¿½(ï¿½ï¿½ï¿½m)")]
     [SerializeField]
     private Transform TargetTfm;
 
-    private RectTransform MyRectTfm;//‚±‚Ì‰æ‘œ‚ÌÀ•W
+    private RectTransform MyRectTfm;//ï¿½ï¿½ï¿½Ì‰æ‘œï¿½Ìï¿½ï¿½W
 
-    [Header("ì‹ÆŠÔ")]
+    [Header("ï¿½ï¿½Æï¿½ï¿½ï¿½")]
     public float CreateTime;
 
-    [Header("ƒQ[ƒW‚Ì‰æ‘œ")]
+    [Header("ï¿½Qï¿½[ï¿½Wï¿½Ì‰æ‘œ")]
     [SerializeField]
     private Image GageImage;
 
-    [Header("ƒQ[ƒW‚Ì‰æ‘œ(”wŒi)")]
+    [Header("ï¿½Qï¿½[ï¿½Wï¿½Ì‰æ‘œ(ï¿½wï¿½i)")]
     [SerializeField]
     private Image BuckGage;
 
@@ -30,17 +30,17 @@ public class CreateGage : MonoBehaviour
 
     void Start()
     {
-        MyRectTfm = GetComponent<RectTransform>();//Œ»İ‚ÌÀ•W‚ğ•Û‘¶
-        GageImage.fillAmount = BuckGage.fillAmount = 0;//‰æ‘œ‚ğƒŠƒZƒbƒg(”ñ•\¦)
+        MyRectTfm = GetComponent<RectTransform>();//ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½Wï¿½ï¿½Û‘ï¿½
+        GageImage.fillAmount = BuckGage.fillAmount = 0;//ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g(ï¿½ï¿½\ï¿½ï¿½)
         Doctor = GameObject.Find("Doctor");
     }
 
     void Update()
     {
-        //ƒ^[ƒQƒbƒg‚ğ’Ç‚¤
-        MyRectTfm.position@= RectTransformUtility.WorldToScreenPoint(Camera.main, TargetTfm.position + offset);
+        //ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½Ç‚ï¿½
+        MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, TargetTfm.position + offset);
 
-        //ƒQ[ƒW‰æ‘œ‚Éì‹ÆŠÔ‚ğ”½‰f‚³‚¹‚é
+        //ï¿½Qï¿½[ï¿½Wï¿½æ‘œï¿½Éï¿½Æï¿½ï¿½Ô‚ğ”½‰fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
         
         if (GageImage.fillAmount > 0)
