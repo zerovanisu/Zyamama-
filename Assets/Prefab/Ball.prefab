@@ -134,9 +134,8 @@ MonoBehaviour:
   DestoryScale: 0.02
   Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
-  isBoostedActived: 0
-  BoostTime: 10
-  BoostIncrease: 10
+  BallBoostedSpeed: 2
+  Ballboosting: 0
 --- !u!1001 &6081328925556683899
 PrefabInstance:
   m_ObjectHideFlags: 0

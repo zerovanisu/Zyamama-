@@ -153,13 +153,13 @@ public class Jamma : MonoBehaviour
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-        GetComponent<ball>().Ballboosting = ture;
+        ball.GetComponent<Ball>().Ballboosting = true;
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-        GetComponent<ball>().istrue = true;
+        ball.GetComponent<Ball>().istrue = true;
     }
     
 
