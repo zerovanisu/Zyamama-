@@ -10,9 +10,9 @@ public class Jamma : MonoBehaviour
     [Header("移動速度が変更できるよ")]
     public float Speed;
 
-    [Header("低速時の速度が変更できるよ")]
+    /*[Header("低速時の速度が変更できるよ")]
     [SerializeField]
-    private float SlowSpeed;
+    private float SlowSpeed;*/
 
     [Header("ボールのプレハブを代入する変数")]
     public GameObject ball;
@@ -33,6 +33,9 @@ public class Jamma : MonoBehaviour
     GameObject[] Life;
 
     private Rigidbody rb;
+
+    [System.NonSerialized]
+    public Animator Am;//アニメーター
 
     //スティック入力を格納する変数
     float Horizontal;
@@ -57,9 +60,13 @@ public class Jamma : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        Am = GetComponent<Animator>();
+        Am.SetBool("Win",false);
+
         //じゃままーを増やす
-        JammaClone.SetActive (false);
-        JammaClone1.SetActive(false);
+        /*JammaClone.SetActive(false);
+        JammaClone1.SetActive(false);*/
     }
 
     void Update()
@@ -71,14 +78,15 @@ public class Jamma : MonoBehaviour
             Horizontal = Input.GetAxis("Horizontal_Ja");
 
             //移動量計算
-            if(Input.GetKey(KeyCode.LeftShift))
+            /*if (Input.GetKey(KeyCode.LeftShift))
             {
                 direction = new Vector3(Horizontal, 0, 0).normalized * SlowSpeed;
             }
             else
             {
                 direction = new Vector3(Horizontal, 0, 0).normalized * Speed;
-            }
+            }*/
+            direction = new Vector3(Horizontal, 0, 0).normalized * Speed;
 
             //発射処理
             if (Input.GetButtonDown("〇_Button_2"))
@@ -88,30 +96,51 @@ public class Jamma : MonoBehaviour
                     Vector3 tmp = this.gameObject.transform.position;
                     tmp.z = this.gameObject.transform.position.z + 1.4f;
                     tmp.y = 0.5f;
-                    Instantiate(ball,tmp, Quaternion.identity);
+                    Instantiate(ball, tmp, Quaternion.identity);
                     ball.GetComponent<Ball>().Zyamama = this.gameObject;
                     Shot = true;
                 }
             }
+
+            //歩行アニメーション
+            if (Horizontal > 0)
+            {
+                Am.SetBool("Walk", true);
+                Am.SetBool("LorR", true);
+            }
+            else if (Horizontal < 0)
+            {
+                Am.SetBool("Walk", true);
+                Am.SetBool("LorR", false);
+            }
+            else
+            {
+                Am.SetBool("Walk", false);
+            }
+        }
+        else
+        {
+            Am.SetBool("Walk",false);
         }
         //じゃままーを増やす
-        if(active == true)
+        /*if (active == true)
         {
-            JammaClone.SetActive (true);
+            JammaClone.SetActive(true);
             JammaClone1.SetActive(true);
             StartCoroutine(SetFalse());
-        }  
-        else{
-            JammaClone.SetActive (false);
-            JammaClone1.SetActive(false);
         }
+        else
+        {
+            JammaClone.SetActive(false);
+            JammaClone1.SetActive(false);
+        }*/
 
         //あとでここの処理まとめよう
-        if(Life_Zyama == 1)
+        if (Life_Zyama == 1)
         {
             Destroy(Life[1]);
         }
-        if(Life_Zyama == 0)
+        if (Life_Zyama == 0)
         {
             Destroy(Life[0]);
         }
@@ -146,22 +175,22 @@ public class Jamma : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3 (0,0,0);
+            rb.velocity = new Vector3(0, 0, 0);
         }
     }
 
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-        ball.GetComponent<Ball>().Ballboosting = true;
+
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-        ball.GetComponent<Ball>().istrue = true;
+
     }
-    
+
 
     //制限時間が短くなる
     private void Skill_Move_3()
@@ -177,7 +206,7 @@ public class Jamma : MonoBehaviour
         Time_Over -= Time.deltaTime;//スキル継続時間のカウントダウン
 
         //スキルの時間が切れたらフラグを元に戻す
-        if(Time_Over <= 0)
+        if (Time_Over <= 0)
         {
             Skill = false;
             Skill_3 = false;
@@ -194,7 +223,8 @@ public class Jamma : MonoBehaviour
         string chackname = collision.gameObject.name.Replace("(Clone)", "");
         if (chackname == "Ball")
         {
-            Sound_Manager.Instance.PlaySE(SE.Bounce,0.5f,5.3f);
+            Sound_Manager.Instance.PlaySE(SE.Bounce, 0.5f, 5.3f);
+            Am.SetTrigger("Hit");
         }
     }
 }

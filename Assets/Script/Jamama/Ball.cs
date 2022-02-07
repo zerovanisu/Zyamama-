@@ -58,17 +58,17 @@ public class Ball : MonoBehaviour
         BallboostTimer = 0;
         Ballboosting = false;
     }
-     void Update()
+    void Update()
     {
         //ボールを増やす
         if (istrue == true)
         {
             Instantiate(this.gameObject, transform.position, Quaternion.identity);
-            Destroy(this.gameObject,10);
+            Destroy(this.gameObject, 10);
             istrue = false;
         }
 
-        if(DestroyTime <= 0)
+        if (DestroyTime <= 0)
         {
             transform.localScale = new Vector3(transform.localScale.x - DestoryScale, transform.localScale.y - DestoryScale, transform.localScale.z - DestoryScale);
         }
@@ -78,12 +78,12 @@ public class Ball : MonoBehaviour
             Destroy(this.gameObject);
         }
         //ボールスビート
-        if(Ballboosting)
+        if (Ballboosting)
         {
             BallboostTimer += Time.deltaTime;
-            if(BallboostTimer >= 10)
+            if (BallboostTimer >= 10)
             {
-                movespeed = 0.05f;
+                //speed = 0.05f;
                 BallboostTimer = 0;
                 Ballboosting = false;
             }
@@ -93,11 +93,11 @@ public class Ball : MonoBehaviour
     //ボールスビート
     private void BallSpeed()
     {
-        if(Ballboosting == true)
+        if (Ballboosting == true)
         {
             movespeed = movespeed + BallBoostedSpeed;
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision hit)
@@ -115,7 +115,7 @@ public class Ball : MonoBehaviour
                     //そのカプセルがスキルを持っていたらスキルを発動させる
                     string Skill_Name = hit.gameObject.GetComponent<BlockManager>().Skill_Name;
 
-                    switch(Skill_Name)
+                    switch (Skill_Name)
                     {
                         case "SpeedBoost"://青
                             Zyamama.GetComponent<Jamma>().Skill_1 = true;
@@ -139,11 +139,11 @@ public class Ball : MonoBehaviour
                 break;
         }
 
-        switch(hit.gameObject.name)
+        switch (hit.gameObject.name)
         {
             //当たったのが博士の時
             case "Doctor"://博士のスキルが発動してなければ消去
-                if(hit.gameObject.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Blue")
+                if (hit.gameObject.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Blue")
                 {
                     //博士にダメージ
                     hit.gameObject.GetComponent<DoctorManager>().Life_Doctor -= 1;
