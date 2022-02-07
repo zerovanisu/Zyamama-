@@ -134,7 +134,7 @@ MonoBehaviour:
   DestoryScale: 0.02
   Doctor: {fileID: 0}
   afterReflectVero: {x: 0, y: 0, z: 0}
-  BallBoostedSpeed: 2
+  BallBoostedSpeed: 3
   Ballboosting: 0
 --- !u!1001 &6081328925556683899
 PrefabInstance:

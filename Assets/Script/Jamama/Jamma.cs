@@ -63,10 +63,6 @@ public class Jamma : MonoBehaviour
         
         Am = GetComponent<Animator>();
         Am.SetBool("Win",false);
-
-        //じゃままーを増やす
-        /*JammaClone.SetActive(false);
-        JammaClone1.SetActive(false);*/
     }
 
     void Update()
@@ -123,7 +119,11 @@ public class Jamma : MonoBehaviour
             Am.SetBool("Walk",false);
         }
         //じゃままーを増やす
-        /*if (active == true)
+        JammaClone.SetActive(false);
+        JammaClone1.SetActive(false);
+        //じゃままーを増やす
+        
+        if (active == true)
         {
             JammaClone.SetActive(true);
             JammaClone1.SetActive(true);
@@ -133,7 +133,7 @@ public class Jamma : MonoBehaviour
         {
             JammaClone.SetActive(false);
             JammaClone1.SetActive(false);
-        }*/
+        }
 
         //あとでここの処理まとめよう
         if (Life_Zyama == 1)
@@ -182,13 +182,13 @@ public class Jamma : MonoBehaviour
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-
+        ball.GetComponent<Ball>().Ballboosting = true;
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-
+        ball.GetComponent<Ball>().istrue = true;
     }
 
 

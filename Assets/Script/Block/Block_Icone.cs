@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Block_Icone : MonoBehaviour
 {
-    [Header("ƒJƒvƒZƒ‹")]
+    [Header("ï¿½Jï¿½vï¿½Zï¿½ï¿½")]
     [SerializeField]
     GameObject Capsule;
 
-    [Header("ƒXƒLƒ‹”Ô†")]
+    [Header("ï¿½Xï¿½Lï¿½ï¿½ï¿½Ôï¿½")]
     [SerializeField]
     int Skill_No;
 
-    [Header("ƒAƒCƒRƒ“‚ÌF‚ğ•ÏX‚Å‚«‚é‚æ")]
+    [Header("ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½ÌFï¿½ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
-    Color Blue, Yellow, Red;
+    Color Blue, Yellow, Red, Green;
 
     [Header("SpriteRenderer")]
     [SerializeField]
@@ -30,7 +30,7 @@ public class Block_Icone : MonoBehaviour
 
         Skill_No = Capsule.GetComponent<BlockManager>().Skill_Number;
 
-        //ƒXƒLƒ‹‚É‡‚í‚¹‚ÄF‚ğ•Ï‚¦‚é
+        //ï¿½Xï¿½Lï¿½ï¿½ï¿½Éï¿½ï¿½í‚¹ï¿½ÄFï¿½ï¿½Ï‚ï¿½ï¿½ï¿½
         switch (Skill_No)
         {
             case 0:
@@ -44,6 +44,9 @@ public class Block_Icone : MonoBehaviour
                 break;
             case 3:
                 Sr.color = Red;
+                break;
+            case 4:
+                Sr.color = Green;
                 break;
         }
     }

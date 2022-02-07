@@ -6,27 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    [Header("•\¦‚µ‚Ä‚¢‚é‰æ‘œ‚Ì”Ô†")]
+   // [Header("ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½æ‘œï¿½Ì”Ôï¿½")]
     [SerializeField]
     int Number;
 
-    [Header("•\¦‰æ‘œ")]
+    //[Header("ï¿½\ï¿½ï¿½ï¿½æ‘œ")]
     [SerializeField]
     GameObject[] TitleImage;
 
-    [Header("ƒƒbƒZ[ƒW‚Ìtext‚ğ“ü‚ê‚é")]
+    [Header("ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½textï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     Text Message;
 
-    [Header("•¶š‚Ì“_–Å‘¬“x")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ì“_ï¿½Å‘ï¿½ï¿½x")]
     [SerializeField]
     float TextSpeed;
 
-    [Header("‰æ–Ê‚ğˆÃ“]‚³‚¹‚éƒpƒlƒ‹")]
+    [Header("ï¿½ï¿½Ê‚ï¿½ï¿½Ã“]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½lï¿½ï¿½")]
     [SerializeField]
     Image BlackImage;
 
-    [Header("‰Ÿ‚µ‚Ä‚©‚çƒV[ƒ“‚ğˆÚ“®‚³‚¹‚éˆÃ“]‚Ü‚Å‚Ì‘¬“x")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã“]ï¿½Ü‚Å‚Ì‘ï¿½ï¿½x")]
     [SerializeField]
     float ChangeTime;
 
@@ -46,10 +46,10 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //à–¾‰æ‘œØ‚è‘Ö‚¦
+        //ï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½Ø‚ï¿½Ö‚ï¿½
         if (Change_Scene == false)
         {
-            if (Input.GetButtonDown("›_Button"))
+            if (Input.GetButtonDown("ï¿½ï¿½_Button"))
             {
                 if(Number < TitleImage.Length -1)
                 {
@@ -58,11 +58,11 @@ public class TitleManager : MonoBehaviour
                 }
                 else
                 {
-                    //ƒQ[ƒ€ƒV[ƒ“‚ÉˆÚs
+                    //ï¿½Qï¿½[ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ÉˆÚs
                     Change_Scene = true;
                 }
             }
-            if (Input.GetButtonDown("~_Button") && Number > 0)
+            if (Input.GetButtonDown("ï¿½~_Button") && Number > 0)
             {
                 Number -= 1;
                 No_Change();
@@ -76,7 +76,7 @@ public class TitleManager : MonoBehaviour
         A_Change();
     }
 
-    //‰æ‘œØ‚è‘Ö‚¦
+    //ï¿½æ‘œï¿½Ø‚ï¿½Ö‚ï¿½
     void No_Change()
     {
         for (i = 0; i < TitleImage.Length; i++)
@@ -93,7 +93,7 @@ public class TitleManager : MonoBehaviour
 
         if(Number == 0)
         {
-            Message.text = "›ƒ{ƒ^ƒ“‚ÅƒXƒ^[ƒg";
+            Message.text = "ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ÅƒXï¿½^ï¿½[ï¿½g";
         }
         else
         {
@@ -101,7 +101,7 @@ public class TitleManager : MonoBehaviour
         }
     }
 
-    //•¶š“_–Å
+    //ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½
     void A_Change()
     {
         if (Change_Scene == false)

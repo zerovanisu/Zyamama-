@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     //リジッドボディ
     private Rigidbody rb;
 
-    public bool istrue;
+    public bool istrue = false;
 
     [Header("ボールのプレハブを入れる変数")]
     public GameObject ballOriginal;
@@ -65,7 +65,6 @@ public class Ball : MonoBehaviour
         {
             Instantiate(this.gameObject, transform.position, Quaternion.identity);
             Destroy(this.gameObject, 10);
-            istrue = false;
         }
 
         if (DestroyTime <= 0)
@@ -128,9 +127,11 @@ public class Ball : MonoBehaviour
                         case "TimeFast"://赤
                             Zyamama.GetComponent<Jamma>().Skill_3 = true;
                             break;
-
-                        default:
+                        case "JammaClone": //Green
                             Zyamama.GetComponent<Jamma>().Skill_4 = true;
+                            break;
+                        default:
+                            
                             break;
                     }
 

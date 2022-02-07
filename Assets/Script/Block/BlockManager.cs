@@ -25,6 +25,9 @@ public class BlockManager : MonoBehaviour
             case 3:
                 Skill_Name = "TimeFast";
                 break;
+            case 4:
+                Skill_Name = "JammaClone";
+                break;
         }
     }
 }

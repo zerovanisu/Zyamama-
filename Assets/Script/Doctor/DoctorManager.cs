@@ -4,64 +4,64 @@ using UnityEngine;
 
 public class DoctorManager : MonoBehaviour
 {
-	[Header("“®‚¯‚éó‘Ô‚©‚Ì”»’è")]
+	[Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ì”ï¿½ï¿½ï¿½")]
 	public bool Frieze = false;
 
-	[Header("ƒ‰ƒCƒt”‚ğ•ÏX‚Å‚«‚é‚æ")]
+	[Header("ï¿½ï¿½ï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
 	public int Life_Doctor;
 
-	[Header("”m‚ÌˆÚ“®‘¬“x‚ğ•ÏX‚Å‚«‚é‚æ")]
+	[Header("ï¿½ï¿½ï¿½mï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
 	public float Speed;
 	
-	[Header("ƒp[ƒc‚ÉG‚ê‚Ä‚¢‚é‚©‚Ì”»’è")]
+	[Header("ï¿½pï¿½[ï¿½cï¿½ÉGï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½")]
 	public bool OnParts;
 
-	[Header("ƒp[ƒc‚ğ’Í‚ñ‚Å‚¢‚é‚©‚Ì”»’è")]
+	[Header("ï¿½pï¿½[ï¿½cï¿½ï¿½Í‚ï¿½Å‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½")]
 	public bool Catching;
 
-	[Header("ì‹Æ‘ä‚ÉG‚ê‚Ä‚¢‚é‚©‚Ì”»’è")]
+	[Header("ï¿½ï¿½Æ‘ï¿½ÉGï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½")]
 	public bool OnTable = false;
 
-	[Header("ƒXƒLƒ‹‚ª”­“®‚µ‚Ä‚¢‚é‚©‚Ì”»’è")]
+	[Header("ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½")]
 	public bool SkillOn = false;
 
-	[Header("ƒXƒLƒ‹‚Ì”­“®ŠÔ‚ğ•ÏX‚Å‚«‚é‚æ")]
+	[Header("ï¿½Xï¿½Lï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
 	[SerializeField]
 	private float Blue_Time, Yellow_Time, Red_Time;
 
-	[Header("”­“®’†‚ÌƒXƒLƒ‹‚Ìc‚èŠÔ")]
+	[Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒXï¿½Lï¿½ï¿½ï¿½Ìcï¿½èï¿½ï¿½")]
 	[SerializeField]
 	private float SkillTime;
 
-	[Header("ƒp[ƒc‰ÁH‚Ìì‹ÆŠÔ‚ğ•ÏX‚Å‚«‚é‚æ")]
+	[Header("ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½Hï¿½Ìï¿½Æï¿½ï¿½Ô‚ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
 	[SerializeField]
 	public float Create_Time;
 
 	[SerializeField]
 	GameObject[] Life;
 
-	[Header("ˆ——p•Ï”`G‚ç‚È‚¢‚Å‚Ë`")]
+	[Header("ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ïï¿½ï¿½`ï¿½Gï¿½ï¿½È‚ï¿½ï¿½Å‚Ë`")]
 	[SerializeField]
-	private float StickSafety;//ƒRƒ“ƒgƒ[ƒ‰[‚Ì”÷“ü—Í‚ğ‚Ç‚±‚Ü‚ÅÈ‚­‚©
-	public string SkillName;//”­“®‚·‚éƒXƒLƒ‹‚Ìí—Ş‚ğŠi”[‚·‚é•Ï”
-	public GameObject Hand;//è‚ğŠi”[‚·‚é•Ï”
-	public GameObject Parts;//G‚ê‚Ä‚¢‚é(’Í‚ñ‚Å‚¢‚é)ƒp[ƒc‚ğŠi”[‚·‚é•Ï”
-	public bool Skill_Keep;//ƒp[ƒc‚ğ‰ÁH‚µ‚½‚©
-	public GameObject Zyama;//ƒWƒƒƒ}ƒ}[‚ğŠi”[‚·‚é•Ï”
+	private float StickSafety;//ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½Ì”ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ç‚ï¿½ï¿½Ü‚ÅÈ‚ï¿½ï¿½ï¿½
+	public string SkillName;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½Ìï¿½Ş‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
+	public GameObject Hand;//ï¿½ï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
+	public GameObject Parts;//ï¿½Gï¿½ï¿½Ä‚ï¿½ï¿½ï¿½(ï¿½Í‚ï¿½Å‚ï¿½ï¿½ï¿½)ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
+	public bool Skill_Keep;//ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public GameObject Zyama;//ï¿½Wï¿½ï¿½ï¿½}ï¿½}ï¿½[ï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
 
-	private bool Create_now;//ì‹Æ‚µ‚Ä‚¢‚é‚Ítrue
-	public float Createnow_Time = 0;//ì‹ÆŠÔ‚ğ‘ª‚é—p‚Ì•Ï”
+	private bool Create_now;//ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½éï¿½ï¿½true
+	public float Createnow_Time = 0;//ï¿½ï¿½Æï¿½ï¿½Ô‚ğ‘ª‚ï¿½pï¿½Ì•Ïï¿½
 	Rigidbody rb;
 	Animator Am;
 
-	//ÅI“ü—Í‚ğ•Û‘¶‚·‚é•Ï”
+	//ï¿½ÅIï¿½ï¿½ï¿½Í‚ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½
 	Quaternion LastRotation;
 
-	//ƒXƒeƒBƒbƒN“ü—Í‚ğŠi”[‚·‚é•Ï”
+	//ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½ï¿½Í‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
 	float Horizontal;
 	float Vertical;
 
-	Vector3 direction;//ˆÚ“®—Ê‚ğŠi”[‚·‚é•Ï”
+	Vector3 direction;//ï¿½Ú“ï¿½ï¿½Ê‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ïï¿½
 
 	void Start()
 	{
@@ -70,30 +70,30 @@ public class DoctorManager : MonoBehaviour
 		SkillName = null;
 	}
 
-	//“ü—ÍŒn‚Í‚±‚Á‚¿
+	//ï¿½ï¿½ï¿½ÍŒnï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½
 	void Update()
 	{
-		//Frieze‚ªtrue‚ÌŠÔ(ƒ|[ƒY‚âì‹Æ’†)‚Í‘€ì‚ª‚Å‚«‚È‚¢
+		//Friezeï¿½ï¿½trueï¿½ÌŠï¿½(ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½Æ’ï¿½)ï¿½Í‘ï¿½ï¿½ì‚ªï¿½Å‚ï¿½ï¿½È‚ï¿½
 		if(Frieze == false)
         {
-			//ƒXƒeƒBƒbƒN“ü—Í‚ğó‚¯æ‚é
+			//ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½ï¿½Í‚ï¿½ï¿½ó‚¯ï¿½ï¿½
 			Horizontal = Input.GetAxis("Horizontal_Dr");
 			Vertical = Input.GetAxis("Vertical_Dr");
 			
-			//ˆÚ“®—Ê‚ÌŒvZ
+			//ï¿½Ú“ï¿½ï¿½Ê‚ÌŒvï¿½Z
 			direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
 			
-			//Œü‚«‚ÌØ‚è‘Ö‚¦
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ÌØ‚ï¿½Ö‚ï¿½
 			Turn();
 
-			//ƒp[ƒc‚ğ’Í‚Şˆ—
+			//ï¿½pï¿½[ï¿½cï¿½ï¿½Í‚Şï¿½ï¿½ï¿½
 			Catch();
 
-			//ƒp[ƒc‚ÉG‚ê‚Ä‚é‚©‚ğæ“¾
+			//ï¿½pï¿½[ï¿½cï¿½ÉGï¿½ï¿½Ä‚é‚©ï¿½ï¿½ï¿½æ“¾
 			OnParts = Hand.GetComponent<DoctorHand>().OnParts;
 
-			//ƒXƒLƒ‹ƒ{ƒ^ƒ“‚ğ‰Ÿ‚³‚ê‚½‚ç
-			if (Input.GetButtonDown("¢_Button"))
+			//ï¿½Xï¿½Lï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½
+			if (Input.GetButtonDown("ï¿½ï¿½_Button"))
 			{
 				Create();
 			}
@@ -109,17 +109,17 @@ public class DoctorManager : MonoBehaviour
 		}
 	}
 
-	//ÀsŒn‚Í‚±‚Á‚¿
+	//ï¿½ï¿½ï¿½sï¿½nï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½
 	void FixedUpdate()
 	{
 		if (Frieze == false)
 		{
-			//“ü—Í‚ª‹É‹Í‚©‚Èê‡‚ÍˆÚ“®—Ê‚ğ‚È‚­‚·
+			//ï¿½ï¿½ï¿½Í‚ï¿½ï¿½É‹Í‚ï¿½ï¿½Èê‡ï¿½ÍˆÚ“ï¿½ï¿½Ê‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½
 			if (Horizontal >= StickSafety || Vertical >= StickSafety || Horizontal <= -StickSafety || Vertical <= -StickSafety)
 			{
 				Am.SetBool("Walk",true);
 
-				//ˆÚ“®—Ê‚ğU‚è“–‚Ä‚é(ÀÛ‚ÉˆÚ“®‚³‚¹‚é)ˆ—
+				//ï¿½Ú“ï¿½ï¿½Ê‚ï¿½Uï¿½è“–ï¿½Ä‚ï¿½(ï¿½ï¿½ï¿½Û‚ÉˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½
 				rb.velocity = direction;
 			}
 			else
@@ -134,46 +134,46 @@ public class DoctorManager : MonoBehaviour
 			rb.velocity = new Vector3(0, 0, 0);
 		}
 
-		//ƒXƒLƒ‹‚ğÀs
+		//ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
 		if (SkillOn == true)
 		{
 			Skill();
 		}
 
-		//ì‹Æ’†‚Ìƒtƒ‰ƒO‚ªƒIƒ“‚Ì
+		//ï¿½ï¿½Æ’ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Ìï¿½
 		if (Create_now == true)
 		{
 			Am.SetBool("Build",true);
 
-			//“®ì‚ğó‚¯•t‚¯‚È‚¢‚æ‚¤‚É’â~ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯•tï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É’ï¿½~ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½
 			Frieze = true;
 
-			//ì‹ÆŠÔ‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“
+			//ï¿½ï¿½Æï¿½ï¿½Ô‚ÌƒJï¿½Eï¿½ï¿½ï¿½gï¿½_ï¿½Eï¿½ï¿½
 			Createnow_Time -= Time.deltaTime;
 
-			//ŠÔ‚ª‰ß‚¬‚½‚çƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+			//ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½Ìƒï¿½ï¿½Zï¿½bï¿½g
 			if (Createnow_Time <= 0)
 			{
 				Am.SetBool("Build", false);
 
-				Create_now = false;//ì‹Æ’†ƒtƒ‰ƒO
-				Frieze = false;//’â~ƒtƒ‰ƒO
-				Skill_Keep = true;//‰ÁHŒãƒp[ƒc‚Ìæ“¾ó‹µ
+				Create_now = false;//ï¿½ï¿½Æ’ï¿½ï¿½tï¿½ï¿½ï¿½O
+				Frieze = false;//ï¿½ï¿½~ï¿½tï¿½ï¿½ï¿½O
+				Skill_Keep = true;//ï¿½ï¿½ï¿½Hï¿½ï¿½pï¿½[ï¿½cï¿½Ìæ“¾ï¿½ï¿½
 			}
 		}
 	}
 
-	//Œü‚«‚Ì•ÏX
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì•ÏX
 	void Turn()
 	{
-		//“ü—Í‚³‚ê‚Ä‚¢‚é(‹É‹Í‚©‚È“ü—Í‚ÍÈ‚­)
+		//ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é(ï¿½É‹Í‚ï¿½ï¿½È“ï¿½ï¿½Í‚ÍÈ‚ï¿½)
 		if (Horizontal >= StickSafety || Vertical >= StickSafety || Horizontal <= -StickSafety || Vertical <= -StickSafety)
 		{
-			//Œü‚«‚ğ•ÏX
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏX
 			var direction = new Vector3(Horizontal, 0, Vertical);
 			transform.localRotation = Quaternion.LookRotation(direction);
 
-			//Œü‚¢‚½•ûŒü‚ğ•Û‘¶
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û‘ï¿½
 			LastRotation = transform.localRotation;
 		}
 		else
@@ -182,27 +182,27 @@ public class DoctorManager : MonoBehaviour
 		}
 	}
 
-	//ƒp[ƒc‚ğ’Í‚Şˆ—
+	//ï¿½pï¿½[ï¿½cï¿½ï¿½Í‚Şï¿½ï¿½ï¿½
 	void Catch()
     {
-		if(Input.GetButtonDown("›_Button"))
+		if(Input.GetButtonDown("ï¿½ï¿½_Button"))
         {
-			//G‚ê‚Ä‚¢‚é‚¯‚Ç’Í‚ñ‚Å‚Í‚¢‚È‚¢‚Æ‚«(’Í‚Ş)
+			//ï¿½Gï¿½ï¿½Ä‚ï¿½ï¿½é‚¯ï¿½Ç’Í‚ï¿½Å‚Í‚ï¿½ï¿½È‚ï¿½ï¿½Æ‚ï¿½(ï¿½Í‚ï¿½)
 			if(OnParts == true && Catching == false)
             {
-				//‚Ç‚Ìƒp[ƒc‚ğ‚Á‚Ä‚¢‚é‚©‚ğó‚¯æ‚é
+				//ï¿½Ç‚Ìƒpï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½ó‚¯ï¿½ï¿½
 				Parts = Hand.GetComponent<DoctorHand>().Parts;
 
-				//ƒp[ƒc‚É’Í‚ñ‚Å‚¢‚é”»’è‚ğ‘—‚é
+				//ï¿½pï¿½[ï¿½cï¿½É’Í‚ï¿½Å‚ï¿½ï¿½é”»ï¿½ï¿½ğ‘—‚ï¿½
 				Catching = Parts.GetComponent<PartsManager>().Catching = true;
             }
-			//’Í‚ñ‚Å‚¢‚é(—£‚·)
+			//ï¿½Í‚ï¿½Å‚ï¿½ï¿½é(ï¿½ï¿½ï¿½ï¿½)
 			else if(Catching == true)
 			{
-				//ƒp[ƒc‚Ì’Í‚ñ‚Å‚¢‚é”»’è‚ğæ‚èÁ‚·(—£‚·)
+				//ï¿½pï¿½[ï¿½cï¿½Ì’Í‚ï¿½Å‚ï¿½ï¿½é”»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 				Catching = Parts.GetComponent<PartsManager>().Catching = false;
 
-				//‚Á‚Ä‚éƒp[ƒc‚ğ‰½‚à‚È‚¢ó‘Ô‚É‚·‚é
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Ô‚É‚ï¿½ï¿½ï¿½
 				Parts = null;
 			}
         }
@@ -219,12 +219,12 @@ public class DoctorManager : MonoBehaviour
 
 	void Create()
     {
-		//ƒp[ƒc‚ğ‚Á‚Ä‚¢‚éAƒXƒLƒ‹”­“®’†‚Å‚Í‚È‚¢Aì‹Æ‘ä‚ÉG‚ê‚Ä‚¢‚éAì‹Æ‚ğI‚¦‚½ƒp[ƒc‚ğ‚Á‚Ä‚¢‚È‚¢
+		//ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Aï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚Í‚È‚ï¿½ï¿½Aï¿½ï¿½Æ‘ï¿½ÉGï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Aï¿½ï¿½Æ‚ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½pï¿½[ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½
 		if (Catching == true && SkillOn == false && OnTable == true && Skill_Keep == false)
 		{
-			SkillName = Hand.GetComponent<DoctorHand>().SkillName;//ƒXƒLƒ‹‚ğæ“¾
+			SkillName = Hand.GetComponent<DoctorHand>().SkillName;//ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
 
-			//ƒXƒLƒ‹‚Ì”­“®ŠÔ‚ğæ“¾
+			//ï¿½Xï¿½Lï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ“¾
 			switch (SkillName)
 			{
 				case "Blue":
@@ -239,18 +239,18 @@ public class DoctorManager : MonoBehaviour
 					SkillTime = Red_Time;
 					break;
 			}
-			Createnow_Time = Create_Time;//ì‹Æ—p‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“‚ğİ’èEÄİ’è
-			Create_now = true;//ì‹Æ’†‚Ìƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é(ƒIƒ“‚ÌŠÔ‚Í“®‚¯‚È‚¢)
+			Createnow_Time = Create_Time;//ï¿½ï¿½Æ—pï¿½ÌƒJï¿½Eï¿½ï¿½ï¿½gï¿½_ï¿½Eï¿½ï¿½ï¿½ï¿½İ’ï¿½Eï¿½Äİ’ï¿½
+			Create_now = true;//ï¿½ï¿½Æ’ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½(ï¿½Iï¿½ï¿½ï¿½ÌŠÔ‚Í“ï¿½ï¿½ï¿½ï¿½È‚ï¿½)
 		}
 	}
 
-	//ƒXƒLƒ‹‘S”Ê‚Ìˆ—
+	//ï¿½Xï¿½Lï¿½ï¿½ï¿½Sï¿½Ê‚Ìï¿½ï¿½ï¿½
 	void Skill()
 	{
-		//ƒXƒLƒ‹ŠÔ‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“
+		//ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌƒJï¿½Eï¿½ï¿½ï¿½gï¿½_ï¿½Eï¿½ï¿½
 		SkillTime -= Time.deltaTime;
 
-		//”­“®ƒXƒLƒ‹‚Ì‘I•Ê
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½Ì‘Iï¿½ï¿½
 		switch (SkillName)
         {
 			case null:
@@ -269,7 +269,7 @@ public class DoctorManager : MonoBehaviour
 				break;
         }
 		
-		//ŠÔ‚ª‰ß‚¬‚½‚çƒXƒLƒ‹ƒtƒ‰ƒO‚ğƒIƒt‚É‚·‚é
+		//ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Iï¿½tï¿½É‚ï¿½ï¿½ï¿½
 		if (SkillTime <= 0)
 		{
 			SkillOn = false;
@@ -279,18 +279,18 @@ public class DoctorManager : MonoBehaviour
 		}
 	}
 
-	void Blue_Skill()//ÂƒXƒLƒ‹
+	void Blue_Skill()//ï¿½ÂƒXï¿½Lï¿½ï¿½
 	{
 
 	}
 
-	void Yellow_Skill()//‰©ƒXƒLƒ‹
+	void Yellow_Skill()//ï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½
     {
 		Zyama.GetComponent<Jamma>().Frieze = true;
 	}
 
-	void Red_Skill()//ÔƒXƒLƒ‹
+	void Red_Skill()//ï¿½ÔƒXï¿½Lï¿½ï¿½
     {
-		//ƒƒCƒ“ƒ}ƒVƒ“iƒuƒƒbƒNj‚ªƒ{[ƒ‹‚ğ‚Í‚Ë•Ô‚·‚æ‚¤‚É‚È‚é
+		//ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½}ï¿½Vï¿½ï¿½ï¿½iï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½jï¿½ï¿½ï¿½{ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Í‚Ë•Ô‚ï¿½ï¿½æ‚¤ï¿½É‚È‚ï¿½
 	}
 }
