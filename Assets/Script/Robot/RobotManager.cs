@@ -8,9 +8,8 @@ public class RobotManager : MonoBehaviour
     [SerializeField]
     public GameObject Head, Arm_L, Arm_R, Leg_L, Leg_R;
 
-    [Header("ゲームディレクター")]
-    [SerializeField]
-    GameObject GameDirector;
+    [System.NonSerialized]
+    public bool Motion_On, GameSet;
 
     Animator Anim;
 
@@ -30,9 +29,8 @@ public class RobotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameDirector.GetComponent<Game_Director>().GameSet == true && GameDirector.GetComponent<Game_Director>().Doctor_Win == true)
+        if(GameSet == true)
         {
-            Anim.SetTrigger("Win");
             Head.SetActive(true);
             Arm_L.SetActive(true);
             Arm_R.SetActive(true);
@@ -40,6 +38,11 @@ public class RobotManager : MonoBehaviour
             Leg_R.SetActive(true);
 
             transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
+        if(Motion_On == true)
+        {
+            Anim.SetTrigger("Win");
         }
     }
 

@@ -173,36 +173,51 @@ public class Game_Director : MonoBehaviour
         {
             Zyama.GetComponent<Jamma>().Frieze = Doctor.GetComponent<DoctorManager>().Frieze = true;
             
-            JudgeText.text = "ゲームセット！";
-
             //遷移のカウントダウン
             Victory_Time -= Time.deltaTime;
+
+            if(Victory_Time > 0)
+            {
+                JudgeText.text = "ゲームセット！";
+            }
         }
     }
 
     public void Victory()
     {
-        ////カメラ処理////
+        ////カメラ切り替え////
         Main_Camera.SetActive(false);
 
+        //暗転直後の処理
         if(Doctor_Win == true)
         {
             Doctor_Camera.SetActive(true);
+            Robots.GetComponent<RobotManager>().GameSet = true;
         }
         else if(Zyama_Win == true)
         {
             Jamama_Camera.SetActive(true);
+            Zyama.transform.position = new Vector3(0, Zyama.transform.position.y, Zyama.transform.position.z);
+            Zyama.transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
         }
 
+        //しばらく間を空ける
         Motion_Time -= Time.deltaTime;
 
-        ////プレイヤーの処理////
+        //一定時間経過後
+        if(Motion_Time > 0)
+        {
+            JudgeText.text = "";
+        }
+
+        //プレイヤーの処理
         if (Doctor_Win == true && Zyama_Win == false)
         {
             //博士が勝った時の挙動
             if(Motion_Time <= 0)
             {
                 JudgeText.text = "博士の勝ち！";
+                Robots.GetComponent<RobotManager>().Motion_On = true;
             }
         }
         else if (Zyama_Win == true && Doctor_Win == false)
@@ -211,6 +226,7 @@ public class Game_Director : MonoBehaviour
             if (Motion_Time <= 0)
             {
                 JudgeText.text = "ジャママーの勝ち！";
+                Zyama.GetComponent<Jamma>().Am.SetBool("Win",true);
             }
         }
 
