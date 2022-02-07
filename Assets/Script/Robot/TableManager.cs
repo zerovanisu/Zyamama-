@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class TableManager : MonoBehaviour
 {
-    [Header("ƒXƒLƒ‹ID‚Æ‚»‚ÌƒXƒLƒ‹‚Ì–¼‘O(F)‚ª•\¦‚³‚ê‚é‚æ")]
+    //[Header("ï¿½Xï¿½Lï¿½ï¿½IDï¿½Æ‚ï¿½ï¿½ÌƒXï¿½Lï¿½ï¿½ï¿½Ì–ï¿½ï¿½O(ï¿½F)ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
-    private int SkillType;//ƒXƒLƒ‹ID
-    public string SkillName;//ƒXƒLƒ‹‚Ì–¼‘O(F)
+    private int SkillType;//ï¿½Xï¿½Lï¿½ï¿½ID
+    public string SkillName;//ï¿½Xï¿½Lï¿½ï¿½ï¿½Ì–ï¿½ï¿½O(ï¿½F)
 
-    [Header("ƒAƒCƒRƒ“‚ÌF‚ğ•ÏX‚Å‚«‚é‚æ")]
+    [Header("ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½ÌFï¿½ï¿½ÏXï¿½Å‚ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     Color Blue, Yellow, Red;
 
-    [Header("“à•”ˆ——p•Ï”`G‚ç‚È‚¢‚Å‚Ë`")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ïï¿½ï¿½`ï¿½Gï¿½ï¿½È‚ï¿½ï¿½Å‚Ë`")]
     [SerializeField]
     GameObject Icon;
     Material IconeColor;
 
     private void Awake()
     {
-        //ƒXƒLƒ‹ID‚Ì’Š‘I
+        //ï¿½Xï¿½Lï¿½ï¿½IDï¿½Ì’ï¿½ï¿½I
         SkillType = Random.Range(1, 4);
     }
 
@@ -33,7 +33,7 @@ public class TableManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ƒXƒLƒ‹‚ÌID‚É‘Î‚µ‚Ä‚Ç‚ÌƒXƒLƒ‹‚©‚ğŠ„‚è“–‚Ä‚é
+        //ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½IDï¿½É‘Î‚ï¿½ï¿½Ä‚Ç‚ÌƒXï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½
         switch (SkillType)
         {
             case 0:
@@ -49,11 +49,11 @@ public class TableManager : MonoBehaviour
                 SkillName = "Red";
                 break;
         }
-        //ƒAƒCƒRƒ“‚ÌF‚ğƒXƒLƒ‹‚ÌF‚É•ÏX
+        //ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½ÌFï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½ÌFï¿½É•ÏX
         TableColor();
     }
 
-    //ƒAƒCƒRƒ“‚ÌF‚ğƒXƒLƒ‹‚ÌF‚É•ÏX‚·‚éˆ—
+    //ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½ÌFï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½ÌFï¿½É•ÏXï¿½ï¿½ï¿½éˆï¿½ï¿½
     void TableColor()
     {
         switch (SkillName)
