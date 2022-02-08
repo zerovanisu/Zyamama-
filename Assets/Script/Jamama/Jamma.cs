@@ -46,16 +46,17 @@ public class Jamma : MonoBehaviour
 
     public bool Shot = false;//玉を射出しているかの判定
     public bool Skill_1 = false;//ボールをスビートアップ
+     public GameObject JammaClone;
+    public GameObject JammaClone1;
+    public bool active;
 
     public bool Skill_2 = false;//ボールを増やす
 
     public bool Skill_3 = false;//時間を加速するスキル
     float Timer;
 
-    public bool Skill_4 = false;//じゃままーを増やす
-    public GameObject JammaClone;
-    public GameObject JammaClone1;
-    public bool active;
+    //public bool Skill_4 = false;//じゃままーを増やす
+   
 
     private void Start()
     {
@@ -63,10 +64,6 @@ public class Jamma : MonoBehaviour
         
         Am = GetComponent<Animator>();
         Am.SetBool("Win",false);
-
-        //じゃままーを増やす
-        /*JammaClone.SetActive(false);
-        JammaClone1.SetActive(false);*/
     }
 
     void Update()
@@ -123,7 +120,11 @@ public class Jamma : MonoBehaviour
             Am.SetBool("Walk",false);
         }
         //じゃままーを増やす
-        /*if (active == true)
+        JammaClone.SetActive(false);
+        JammaClone1.SetActive(false);
+        //じゃままーを増やす
+        
+        if (active == true)
         {
             JammaClone.SetActive(true);
             JammaClone1.SetActive(true);
@@ -133,7 +134,7 @@ public class Jamma : MonoBehaviour
         {
             JammaClone.SetActive(false);
             JammaClone1.SetActive(false);
-        }*/
+        }
 
         //あとでここの処理まとめよう
         if (Life_Zyama == 1)
@@ -156,10 +157,10 @@ public class Jamma : MonoBehaviour
         {
             Skill_Move_3();
         }
-        if (Skill_4 == true)
-        {
-            Skill_Move_4();
-        }
+        //if (Skill_4 == true)
+       // {
+        //    Skill_Move_4();
+        //}
     }
     IEnumerator SetFalse()
     {
@@ -182,13 +183,14 @@ public class Jamma : MonoBehaviour
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-
+        ball.GetComponent<Ball>().Ballboosting = true;
+        active = true;
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-
+        ball.GetComponent<Ball>().istrue = true;
     }
 
 
@@ -212,10 +214,10 @@ public class Jamma : MonoBehaviour
             Skill_3 = false;
         }
     }
-    private void Skill_Move_4()
-    {
-        active = true;
-    }
+    //private void Skill_Move_4()
+    //{
+        
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
