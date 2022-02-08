@@ -30,7 +30,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField]
     float ChangeTime;
 
-    float Alpha,Alpha_2;
+    float Alpha, Alpha_2;
     bool A_judge;
     bool Change_Scene;
     int i;
@@ -51,7 +51,7 @@ public class TitleManager : MonoBehaviour
         {
             if (Input.GetButtonDown("○_Button"))
             {
-                if(Number < TitleImage.Length -1)
+                if (Number < TitleImage.Length - 1)
                 {
                     Number += 1;
                     No_Change();
@@ -68,7 +68,7 @@ public class TitleManager : MonoBehaviour
                 No_Change();
             }
         }
-        
+
     }
 
     private void FixedUpdate()
@@ -91,7 +91,7 @@ public class TitleManager : MonoBehaviour
             }
         }
 
-        if(Number == 0)
+        if (Number == 0)
         {
             Message.text = "○ボタンでスタート";
         }
