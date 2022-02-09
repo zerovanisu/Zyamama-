@@ -48,8 +48,7 @@ public class DoctorManager : MonoBehaviour
 	public GameObject Parts;//触れている(掴んでいる)パーツを格納する変数
 	public bool Skill_Keep;//パーツを加工したか
 	public GameObject Zyama;//ジャママーを格納する変数
-
-	private bool Create_now;//作業している時はtrue
+	public bool Create_now;//作業している時はtrue
 	public float Createnow_Time = 0;//作業時間を測る用の変数
 	Rigidbody rb;
 	Animator Am;
@@ -67,7 +66,7 @@ public class DoctorManager : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		Am = GetComponent<Animator>();
-		SkillName = null;
+		SkillName = "Non";
 	}
 
 	//入力系はこっち
@@ -99,6 +98,7 @@ public class DoctorManager : MonoBehaviour
 			}
 		}
 
+		//ライフ画像処理
 		if (Life_Doctor == 1)
 		{
 			Destroy(Life[1]);
@@ -253,7 +253,7 @@ public class DoctorManager : MonoBehaviour
 		//発動スキルの選別
 		switch (SkillName)
         {
-			case null:
+			case "Non":
 				break;
 
 			case "Blue":
@@ -273,7 +273,7 @@ public class DoctorManager : MonoBehaviour
 		if (SkillTime <= 0)
 		{
 			SkillOn = false;
-			SkillName = null;
+			SkillName = "Non";
 
 			Zyama.GetComponent<Jamma>(). Frieze = false;
 		}

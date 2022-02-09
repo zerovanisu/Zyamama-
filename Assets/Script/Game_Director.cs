@@ -55,6 +55,10 @@ public class Game_Director : MonoBehaviour
     [SerializeField]
     float Motion_Time_Max;
 
+    [Header("ブロックの数")]
+    [SerializeField]
+    int BlockCount_Max;
+
     [Header("内部処理用の変数")]
     [SerializeField]
     private GameObject Generation, Doctor, Hand, Zyama, Robots;
@@ -75,6 +79,7 @@ public class Game_Director : MonoBehaviour
     Animator Zamama_Anim;
     float StartTime;
     bool Started;
+    public int BlockCount;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +101,7 @@ public class Game_Director : MonoBehaviour
         Motion_Time = Motion_Time_Max;
 
         Sound_Manager.Instance.PlayBGM(BGM.Game_BGM);
+        BlockCount = BlockCount_Max;
     }
 
     // Update is called once per frame
@@ -163,6 +169,11 @@ public class Game_Director : MonoBehaviour
             {
                 SceneManager.LoadScene("TitleScene");
             }
+        }
+        
+        if(BlockCount == 0)
+        {
+            Zyama_Win = true;
         }
 
         Juge();
@@ -242,7 +253,8 @@ public class Game_Director : MonoBehaviour
         {
             Doctor_Camera.SetActive(true);
             Robots.GetComponent<RobotManager>().GameSet = true;
-            Doctor.transform.position = new Vector3(0,20,0);
+            Robots.transform.position = new Vector3(0, 0, 2);
+            Doctor.transform.position = new Vector3(0, -2, 0);
         }
         else if(Zyama_Win == true)
         {
