@@ -41,6 +41,7 @@ public class TitleManager : MonoBehaviour
         Number = 0;
         Alpha = Message.color.a;
         No_Change();
+        Sound_Manager.Instance.PlayBGM(BGM.Title_BGM);
     }
 
     // Update is called once per frame
@@ -55,6 +56,8 @@ public class TitleManager : MonoBehaviour
                 {
                     Number += 1;
                     No_Change();
+
+                    Sound_Manager.Instance.PlaySE(SE.Select,1,0);
                 }
                 else
                 {

@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     public GameObject Doctor;
 
     //移動ベクトルを保存する変数
-    private Vector3 pos;
+    public Vector3 pos;
 
     //ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
@@ -49,7 +49,6 @@ public class Ball : MonoBehaviour
         Zyamama = GameObject.Find("Zyamama");
         Doctor = GameObject.Find("Doctor");
         rb = this.GetComponent<Rigidbody>();
-        pos = new Vector3(movespeed, 0, movespeed);
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;

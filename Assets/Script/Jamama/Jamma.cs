@@ -96,8 +96,17 @@ public class Jamma : MonoBehaviour
                     Vector3 tmp = this.gameObject.transform.position;
                     tmp.z = this.gameObject.transform.position.z + 1.4f;
                     tmp.y = 0.5f;
-                    Instantiate(ball, tmp, Quaternion.identity);
-                    ball.GetComponent<Ball>().Zyamama = this.gameObject;
+                    GameObject Ball = Instantiate(ball, tmp, Quaternion.identity);
+                    Ball.GetComponent<Ball>().Zyamama = this.gameObject;
+                    float BallSpeed = Ball.GetComponent<Ball>().movespeed;
+                    if(this.transform.position.x <= 0)
+                    {
+                        Ball.GetComponent<Ball>().pos = new Vector3(BallSpeed, 0, BallSpeed);
+                    }
+                    else
+                    {
+                        Ball.GetComponent<Ball>().pos = new Vector3(-BallSpeed, 0, BallSpeed);
+                    }
                     Shot = true;
                 }
             }
