@@ -6,31 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    //[Header("ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½æ‘œï¿½Ì”Ôï¿½")]
+    [Header("•\¦‚µ‚Ä‚¢‚é‰æ‘œ‚Ì”Ô†")]
     [SerializeField]
     int Number;
 
-    //[Header("ï¿½\ï¿½ï¿½ï¿½æ‘œ")]
+    [Header("•\¦‰æ‘œ")]
     [SerializeField]
     GameObject[] TitleImage;
 
-    [Header("ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½textï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    [Header("ƒƒbƒZ[ƒW‚Ìtext‚ğ“ü‚ê‚é")]
     [SerializeField]
     Text Message;
 
-    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ì“_ï¿½Å‘ï¿½ï¿½x")]
+    [Header("•¶š‚Ì“_–Å‘¬“x")]
     [SerializeField]
     float TextSpeed;
 
-    [Header("ï¿½ï¿½Ê‚ï¿½ï¿½Ã“]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½lï¿½ï¿½")]
+    [Header("‰æ–Ê‚ğˆÃ“]‚³‚¹‚éƒpƒlƒ‹")]
     [SerializeField]
     Image BlackImage;
 
-    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã“]ï¿½Ü‚Å‚Ì‘ï¿½ï¿½x")]
+    [Header("‰Ÿ‚µ‚Ä‚©‚çƒV[ƒ“‚ğˆÚ“®‚³‚¹‚éˆÃ“]‚Ü‚Å‚Ì‘¬“x")]
     [SerializeField]
     float ChangeTime;
 
-    float Alpha,Alpha_2;
+    float Alpha, Alpha_2;
     bool A_judge;
     bool Change_Scene;
     int i;
@@ -41,34 +41,37 @@ public class TitleManager : MonoBehaviour
         Number = 0;
         Alpha = Message.color.a;
         No_Change();
+        Sound_Manager.Instance.PlayBGM(BGM.Title_BGM);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½Ø‚ï¿½Ö‚ï¿½
+        //à–¾‰æ‘œØ‚è‘Ö‚¦
         if (Change_Scene == false)
         {
-            if (Input.GetButtonDown("ï¿½ï¿½_Button"))
+            if (Input.GetButtonDown("›_Button"))
             {
-                if(Number < TitleImage.Length -1)
+                if (Number < TitleImage.Length - 1)
                 {
                     Number += 1;
                     No_Change();
+
+                    Sound_Manager.Instance.PlaySE(SE.Select,1,0);
                 }
                 else
                 {
-                    //ï¿½Qï¿½[ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ÉˆÚs
+                    //ƒQ[ƒ€ƒV[ƒ“‚ÉˆÚs
                     Change_Scene = true;
                 }
             }
-            if (Input.GetButtonDown("ï¿½~_Button") && Number > 0)
+            if (Input.GetButtonDown("~_Button") && Number > 0)
             {
                 Number -= 1;
                 No_Change();
             }
         }
-        
+
     }
 
     private void FixedUpdate()
@@ -76,7 +79,7 @@ public class TitleManager : MonoBehaviour
         A_Change();
     }
 
-    //ï¿½æ‘œï¿½Ø‚ï¿½Ö‚ï¿½
+    //‰æ‘œØ‚è‘Ö‚¦
     void No_Change()
     {
         for (i = 0; i < TitleImage.Length; i++)
@@ -91,9 +94,9 @@ public class TitleManager : MonoBehaviour
             }
         }
 
-        if(Number == 0)
+        if (Number == 0)
         {
-            Message.text = "ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ÅƒXï¿½^ï¿½[ï¿½g";
+            Message.text = "›ƒ{ƒ^ƒ“‚ÅƒXƒ^[ƒg";
         }
         else
         {
@@ -101,7 +104,7 @@ public class TitleManager : MonoBehaviour
         }
     }
 
-    //ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½
+    //•¶š“_–Å
     void A_Change()
     {
         if (Change_Scene == false)

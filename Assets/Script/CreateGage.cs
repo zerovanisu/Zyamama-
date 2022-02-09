@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class CreateGage : MonoBehaviour
 {
-    [Header("�ǂ��Ώ�(���m)")]
+    [Header("追う対象(博士)")]
     [SerializeField]
     private Transform TargetTfm;
 
-    private RectTransform MyRectTfm;//���̉摜�̍��W
+    private RectTransform MyRectTfm;//この画像の座標
 
-    [Header("��Ǝ���")]
+    [Header("作業時間")]
     public float CreateTime;
 
-    [Header("�Q�[�W�̉摜")]
+    [Header("ゲージの画像")]
     [SerializeField]
     private Image GageImage;
 
-    [Header("�Q�[�W�̉摜(�w�i)")]
+    [Header("ゲージの画像(背景)")]
     [SerializeField]
     private Image BuckGage;
 
@@ -30,19 +30,19 @@ public class CreateGage : MonoBehaviour
 
     void Start()
     {
-        MyRectTfm = GetComponent<RectTransform>();//���݂̍��W��ۑ�
-        GageImage.fillAmount = BuckGage.fillAmount = 0;//�摜�����Z�b�g(��\��)
+        MyRectTfm = GetComponent<RectTransform>();//現在の座標を保存
+        GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
         Doctor = GameObject.Find("Doctor");
     }
 
     void Update()
     {
-        //�^�[�Q�b�g��ǂ�
+        //ターゲットを追う
         MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, TargetTfm.position + offset);
 
-        //�Q�[�W�摜�ɍ�Ǝ��Ԃ𔽉f������
+        //ゲージ画像に作業時間を反映させる
         GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
-        
+
         if (GageImage.fillAmount > 0)
         {
             BuckGage.fillAmount = 1;

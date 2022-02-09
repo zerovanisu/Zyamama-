@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     //リジッドボディ
     private Rigidbody rb;
 
-    public bool istrue = false;
+    public bool istrue;
 
     [Header("ボールのプレハブを入れる変数")]
     public GameObject ballOriginal;
@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     public GameObject Doctor;
 
     //移動ベクトルを保存する変数
-    private Vector3 pos;
+    public Vector3 pos;
 
     //ボールが当たった物体の法線ベクトル
     private Vector3 objNomalVector = Vector3.zero;
@@ -49,7 +49,6 @@ public class Ball : MonoBehaviour
         Zyamama = GameObject.Find("Zyamama");
         Doctor = GameObject.Find("Doctor");
         rb = this.GetComponent<Rigidbody>();
-        pos = new Vector3(movespeed, 0, movespeed);
         afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
@@ -65,6 +64,7 @@ public class Ball : MonoBehaviour
         {
             Instantiate(this.gameObject, transform.position, Quaternion.identity);
             Destroy(this.gameObject, 10);
+            istrue = false;
         }
 
         if (DestroyTime <= 0)
@@ -118,6 +118,7 @@ public class Ball : MonoBehaviour
                     {
                         case "SpeedBoost"://青
                             Zyamama.GetComponent<Jamma>().Skill_1 = true;
+                            Zyamama.GetComponent<Jamma>().DeleteTime = 10;
                             break;
 
                         case "MultipleBall"://黄
@@ -127,11 +128,8 @@ public class Ball : MonoBehaviour
                         case "TimeFast"://赤
                             Zyamama.GetComponent<Jamma>().Skill_3 = true;
                             break;
-                       // case "JammaClone": //Green
-                           // Zyamama.GetComponent<Jamma>().Skill_4 = true;
-                           // break;
+
                         default:
-                            
                             break;
                     }
 
