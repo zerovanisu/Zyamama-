@@ -116,7 +116,7 @@ public class Ball : MonoBehaviour
 
                     switch (Skill_Name)
                     {
-                        case "SpeedBoost"://青
+                        case "Avatar"://青
                             Zyamama.GetComponent<Jamma>().Skill_1 = true;
                             Zyamama.GetComponent<Jamma>().DeleteTime = 10;
                             break;
