@@ -41,15 +41,15 @@ public class Ball : MonoBehaviour
     private float BallboostTimer;
     public float BallBoostedSpeed;
     public bool Ballboosting;
+    public GameObject GameDirector;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Zyamama = GameObject.Find("Zyamama");
-        Doctor = GameObject.Find("Doctor");
+        GameDirector = GameObject.Find("GameDirector");
         rb = this.GetComponent<Rigidbody>();
-        afterReflectVero = rb.velocity;
         rb.velocity = pos;
         afterReflectVero = rb.velocity;
         //ボールスビート
@@ -105,11 +105,10 @@ public class Ball : MonoBehaviour
         {
             case "Capsule"://当たったものがカプセル(ブロック)の時
                 //博士の赤スキルが発動していない時
-                if (Doctor.GetComponent<DoctorManager>().SkillOn == false || Doctor.GetComponent<DoctorManager>().SkillName != "Red")
+                if ((Doctor.GetComponent<DoctorManager>().SkillOn == false) || (Doctor.GetComponent<DoctorManager>().SkillName == "Red"))
                 {
                     //カプセルを壊した音を鳴らす
-                    GameObject Director = GameObject.Find("GameDirector");
-                    Director.GetComponent<Game_Director>().Block_Breake = true;
+                    GameDirector.GetComponent<Game_Director>().Block_Breake = true;
 
                     //そのカプセルがスキルを持っていたらスキルを発動させる
                     string Skill_Name = hit.gameObject.GetComponent<BlockManager>().Skill_Name;
@@ -132,6 +131,8 @@ public class Ball : MonoBehaviour
                         default:
                             break;
                     }
+
+                    GameDirector.GetComponent<Game_Director>().BlockCount -= 1;
 
                     Destroy(hit.gameObject);//カプセルを消す
                 }

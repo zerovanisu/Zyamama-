@@ -29,6 +29,9 @@ public class Jamma : MonoBehaviour
     [SerializeField]
     public GameObject GameDirector;
 
+    [Header("博士")]
+    public GameObject Doctor;
+
     [SerializeField]
     GameObject[] Life;
 
@@ -98,6 +101,7 @@ public class Jamma : MonoBehaviour
                     tmp.y = 0.5f;
                     GameObject Ball = Instantiate(ball, tmp, Quaternion.identity);
                     Ball.GetComponent<Ball>().Zyamama = this.gameObject;
+                    Ball.GetComponent<Ball>().Doctor = Doctor;
                     float BallSpeed = Ball.GetComponent<Ball>().movespeed;
                     if(this.transform.position.x <= 0)
                     {
@@ -206,7 +210,7 @@ public class Jamma : MonoBehaviour
     private void Skill_Move_3()
     {
         //ローカル変数に保存して書きやすくする
-        bool Skill = GameDirector.GetComponent<Game_Director>().Time_SKill = true;
+        GameDirector.GetComponent<Game_Director>().Time_SKill = true;
 
         //ゲームの制限時間を取得
         Timer = GameDirector.GetComponent<Game_Director>().Timer;
@@ -218,7 +222,7 @@ public class Jamma : MonoBehaviour
         //スキルの時間が切れたらフラグを元に戻す
         if (Time_Over <= 0)
         {
-            Skill = false;
+            GameDirector.GetComponent<Game_Director>().Time_SKill = false;
             Skill_3 = false;
         }
     }

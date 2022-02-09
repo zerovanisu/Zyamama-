@@ -7,7 +7,7 @@ public class CreateGage : MonoBehaviour
 {
     [Header("追う対象(博士)")]
     [SerializeField]
-    private Transform TargetTfm;
+    GameObject Doctor;
 
     private RectTransform MyRectTfm;//この画像の座標
 
@@ -26,30 +26,31 @@ public class CreateGage : MonoBehaviour
 
     private bool Downnow;
 
-    GameObject Doctor;
-
     void Start()
     {
         MyRectTfm = GetComponent<RectTransform>();//現在の座標を保存
         GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
-        Doctor = GameObject.Find("Doctor");
     }
 
     void Update()
     {
         //ターゲットを追う
-        MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, TargetTfm.position + offset);
+        MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, Doctor.transform.position + offset);
 
-        //ゲージ画像に作業時間を反映させる
-        GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
+        if(Doctor.GetComponent<DoctorManager>().Create_now == true)
+        {
+            //ゲージ画像に作業時間を反映させる
+            GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
 
-        if (GageImage.fillAmount > 0)
-        {
-            BuckGage.fillAmount = 1;
-        }
-        else
-        {
-            BuckGage.fillAmount = 0;
+            if (GageImage.fillAmount > 0)
+            {
+                BuckGage.fillAmount = 1;
+            }
+            else
+            {
+                BuckGage.fillAmount = 0;
+                GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
+            }
         }
     }
 }

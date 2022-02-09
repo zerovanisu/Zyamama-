@@ -37,25 +37,30 @@ public class PartsManager : MonoBehaviour
         //掴まれているかを判定
         if (Catching == true)
         {
-            //手の座標(高さ以外)を取得、高さは現在地をそのまま反映
+            //手の座標(高さ以外)を取得
             PosX = Hand.transform.position.x;
-            PosY = this.transform.position.y;
             PosZ = Hand.transform.position.z;
+
             //持ち上げる処理
-            PosY = High;
-            
+            //PosY = High;
+
             //座標を反映
-            this.transform.position = new Vector3(PosX, PosY, PosZ);
+            this.transform.position = Hand.transform.position;//new Vector3(PosX, PosY, PosZ);
 
             //回転や位置ずれが起きないように止める処理
-            rb.constraints = RigidbodyConstraints.FreezeRotation
-                | RigidbodyConstraints.FreezePositionY;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
 
             //物理処理を一時停止
             bc.isTrigger = true;
         }
         else
         {
+            if(Hand != null)
+            {
+                //手の情報を破棄
+                Hand = null;
+            }
+
             //物理処理を再稼働
             bc.isTrigger = false;
 
@@ -101,13 +106,6 @@ public class PartsManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //離れたものが手だったら(離されたら)
-        if(other.gameObject == Hand)
-        {
-            //手の情報を破棄
-            Hand = null;
-        }
-
         if (other.gameObject.tag == "CreateTable")
         {
             SkillName = null;

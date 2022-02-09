@@ -51,7 +51,7 @@ public class DoctorHand : MonoBehaviour
     //パーツを離した時
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Robot")
+        if (other.gameObject.tag == "Robot" && Doctor.GetComponent<DoctorManager>().Catching == false)
         {
             //取得パーツを空(何も持っていない状態)にする
             Parts = null;
