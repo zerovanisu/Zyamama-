@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class Game_Director : MonoBehaviour
 {
+    [Header("ゲーム開始のカウントダウン")]
+    [SerializeField]
+    float StartTime_Max;
+
+    [Header("最初のカウントダウン用のテキスト")]
+    [SerializeField]
+    Text StartCount_Text;
+
     [Header("制限時間を変更できるよ")]
     [SerializeField]
     public float Timer;
@@ -65,10 +73,15 @@ public class Game_Director : MonoBehaviour
     [System.NonSerialized]
     public bool GameSet;
     Animator Zamama_Anim;
+    float StartTime;
+    bool Started;
 
     // Start is called before the first frame update
     void Start()
     {
+        Started = false;
+        Zyama.GetComponent<Jamma>().Frieze = Doctor.GetComponent<DoctorManager>().Frieze = true;
+        StartTime = StartTime_Max;
         Generation = GameObject.Find("Generation");//パーツ格納判定を取得
         Hand = Doctor.GetComponent<DoctorManager>().Hand;//手を取得
         Parts_No = Generation.GetComponent<PlacementManager>().Parts_No;//全体のパーツ数を取得
@@ -81,13 +94,49 @@ public class Game_Director : MonoBehaviour
 
         Victory_Time = Victory_Time_Max;
         Motion_Time = Motion_Time_Max;
+
+        Sound_Manager.Instance.PlayBGM(BGM.Game_BGM);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //タイマー処理
-        Count();
+        if(Started == true)
+        {
+            if(StartTime >= 0)
+            {
+                StartTime -= Time.deltaTime;
+            }
+            else
+            {
+                StartCount_Text.gameObject.SetActive(false);
+            }
+
+            //タイマー処理
+            Count();
+        }
+        else
+        {
+            StartTime -= Time.deltaTime;
+
+            if(StartTime <= 0.5f)
+            {
+                StartCount_Text.text = "START";
+            }
+            else
+            {
+                StartCount_Text.text = StartTime.ToString("F0");
+            }
+
+            if (StartTime <= 0)
+            {
+                Started = true;
+
+                Zyama.GetComponent<Jamma>().Frieze = Doctor.GetComponent<DoctorManager>().Frieze = false;
+
+                StartTime = 0.5f;
+            }
+        }
 
         //それぞれのライフを取得(更新)
         Life_Doctor = Doctor.GetComponent<DoctorManager>().Life_Doctor;
@@ -193,6 +242,7 @@ public class Game_Director : MonoBehaviour
         {
             Doctor_Camera.SetActive(true);
             Robots.GetComponent<RobotManager>().GameSet = true;
+            Doctor.transform.position = new Vector3(0,20,0);
         }
         else if(Zyama_Win == true)
         {

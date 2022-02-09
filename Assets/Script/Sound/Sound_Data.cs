@@ -1,10 +1,7 @@
 public enum BGM
 {
     Title_BGM = 1,
-    Manual_BGM = 2,
-    Main_BGM = 3,
-    Doctor_BGM = 4,
-    Jamama_BGM = 5
+    Game_BGM =2 
 }
 
 public enum JNG
@@ -14,6 +11,8 @@ public enum JNG
 
 public enum SE
 {
+    Select = 1,
+
     Decision = 7,
     Bounce = 8,
     Break_1 = 9,

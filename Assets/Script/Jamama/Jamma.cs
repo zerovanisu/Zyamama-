@@ -45,18 +45,17 @@ public class Jamma : MonoBehaviour
     public bool Frieze = false;//操作を停止させるフラグ(ポーズ等)
 
     public bool Shot = false;//玉を射出しているかの判定
-    public bool Skill_1 = false;//ボールをスビートアップ
-     public GameObject JammaClone;
+    public GameObject JammaClone;
     public GameObject JammaClone1;
     public bool active;
+    public bool Skill_1 = false;//じゃままーを増やす
 
     public bool Skill_2 = false;//ボールを増やす
 
     public bool Skill_3 = false;//時間を加速するスキル
     float Timer;
 
-    //public bool Skill_4 = false;//じゃままーを増やす
-   
+    public float DeleteTime;
 
     private void Start()
     {
@@ -64,6 +63,10 @@ public class Jamma : MonoBehaviour
         
         Am = GetComponent<Animator>();
         Am.SetBool("Win",false);
+
+        //じゃままーを増やす
+        /*JammaClone.SetActive(false);
+        JammaClone1.SetActive(false);*/
     }
 
     void Update()
@@ -93,8 +96,17 @@ public class Jamma : MonoBehaviour
                     Vector3 tmp = this.gameObject.transform.position;
                     tmp.z = this.gameObject.transform.position.z + 1.4f;
                     tmp.y = 0.5f;
-                    Instantiate(ball, tmp, Quaternion.identity);
-                    ball.GetComponent<Ball>().Zyamama = this.gameObject;
+                    GameObject Ball = Instantiate(ball, tmp, Quaternion.identity);
+                    Ball.GetComponent<Ball>().Zyamama = this.gameObject;
+                    float BallSpeed = Ball.GetComponent<Ball>().movespeed;
+                    if(this.transform.position.x <= 0)
+                    {
+                        Ball.GetComponent<Ball>().pos = new Vector3(BallSpeed, 0, BallSpeed);
+                    }
+                    else
+                    {
+                        Ball.GetComponent<Ball>().pos = new Vector3(-BallSpeed, 0, BallSpeed);
+                    }
                     Shot = true;
                 }
             }
@@ -120,15 +132,10 @@ public class Jamma : MonoBehaviour
             Am.SetBool("Walk",false);
         }
         //じゃままーを増やす
-        JammaClone.SetActive(false);
-        JammaClone1.SetActive(false);
-        //じゃままーを増やす
-        
         if (active == true)
         {
             JammaClone.SetActive(true);
             JammaClone1.SetActive(true);
-            StartCoroutine(SetFalse());
         }
         else
         {
@@ -145,6 +152,7 @@ public class Jamma : MonoBehaviour
         {
             Destroy(Life[0]);
         }
+
         if (Skill_1 == true)
         {
             Skill_Move_1();
@@ -157,16 +165,8 @@ public class Jamma : MonoBehaviour
         {
             Skill_Move_3();
         }
-        //if (Skill_4 == true)
-       // {
-        //    Skill_Move_4();
-        //}
     }
-    IEnumerator SetFalse()
-    {
-        yield return new WaitForSeconds(10);
-        active = false;
-    }
+
     void FixedUpdate()
     {
         if (Frieze == false)
@@ -183,14 +183,22 @@ public class Jamma : MonoBehaviour
     //ジャママーの移動が速くなるスキル
     private void Skill_Move_1()
     {
-        ball.GetComponent<Ball>().Ballboosting = true;
-        active = true;
+        if(DeleteTime >= 0)
+        {
+            active = true;
+            DeleteTime -= Time.deltaTime;
+        }
+        else
+        {
+            active = false;
+            Skill_1 = false;
+        }
     }
 
     //ボールが2つになるスキル
     private void Skill_Move_2()
     {
-        ball.GetComponent<Ball>().istrue = true;
+
     }
 
 
@@ -214,10 +222,6 @@ public class Jamma : MonoBehaviour
             Skill_3 = false;
         }
     }
-    //private void Skill_Move_4()
-    //{
-        
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
