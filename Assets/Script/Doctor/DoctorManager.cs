@@ -195,6 +195,7 @@ public class DoctorManager : MonoBehaviour
 
 				//ƒp[ƒc‚É’Í‚ñ‚Å‚¢‚é”»’è‚ğ‘—‚é
 				Catching = Parts.GetComponent<PartsManager>().Catching = true;
+				Parts.gameObject.GetComponent<PartsManager>().Hand = Hand;
             }
 			//’Í‚ñ‚Å‚¢‚é(—£‚·)
 			else if(Catching == true)

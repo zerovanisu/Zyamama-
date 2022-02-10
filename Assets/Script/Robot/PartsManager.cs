@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartsManager : MonoBehaviour
 {
-    public GameObject Hand = null;//G‚ê‚½è‚ğŠi”[‚·‚é•Ï”
+    public GameObject Hand;//G‚ê‚½è‚ğŠi”[‚·‚é•Ï”
     public bool Catching = false;//’Í‚Ü‚ê‚Ä‚¢‚é‚©‚ğ”»’è‚·‚é•Ï”
 
     public float PosX,PosY,PosZ = 0;//è‚ÌÀ•W‚ğŠi”[‚·‚é•Ï”
@@ -37,15 +37,8 @@ public class PartsManager : MonoBehaviour
         //’Í‚Ü‚ê‚Ä‚¢‚é‚©‚ğ”»’è
         if (Catching == true)
         {
-            //è‚ÌÀ•W(‚‚³ˆÈŠO)‚ğæ“¾
-            PosX = Hand.transform.position.x;
-            PosZ = Hand.transform.position.z;
-
-            //‚¿ã‚°‚éˆ—
-            //PosY = High;
-
             //À•W‚ğ”½‰f
-            this.transform.position = Hand.transform.position;//new Vector3(PosX, PosY, PosZ);
+            this.transform.position = Hand.transform.position;
 
             //‰ñ“]‚âˆÊ’u‚¸‚ê‚ª‹N‚«‚È‚¢‚æ‚¤‚É~‚ß‚éˆ—
             rb.constraints = RigidbodyConstraints.FreezeRotation;

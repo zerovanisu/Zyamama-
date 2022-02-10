@@ -37,7 +37,7 @@ public class CreateGage : MonoBehaviour
         //ターゲットを追う
         MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, Doctor.transform.position + offset);
 
-        if(Doctor.GetComponent<DoctorManager>().Create_now == true)
+        if(Doctor.gameObject.GetComponent<DoctorManager>().Create_now == true)
         {
             //ゲージ画像に作業時間を反映させる
             GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
@@ -46,11 +46,10 @@ public class CreateGage : MonoBehaviour
             {
                 BuckGage.fillAmount = 1;
             }
-            else
-            {
-                BuckGage.fillAmount = 0;
-                GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
-            }
+        }
+        else
+        {
+            GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
         }
     }
 }

@@ -39,6 +39,8 @@ public class DoctorHand : MonoBehaviour
             //G‚ê‚Ä‚¢‚éƒp[ƒc‚ğŠi”[
             Parts = other.gameObject;
 
+            other.gameObject.GetComponent<PartsManager>().Hand = this.gameObject;
+
             SkillName = other.gameObject.GetComponent<PartsManager>().SkillName;
         }
         if(other.gameObject.tag == "CreateTable")
