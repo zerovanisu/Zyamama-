@@ -9,6 +9,10 @@ public class CreateGage : MonoBehaviour
     [SerializeField]
     GameObject Doctor;
 
+    [Header("博士が作業中か")]
+    [SerializeField]
+    public bool Create_Now;
+
     private RectTransform MyRectTfm;//この画像の座標
 
     [Header("作業時間")]
@@ -37,7 +41,9 @@ public class CreateGage : MonoBehaviour
         //ターゲットを追う
         MyRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, Doctor.transform.position + offset);
 
-        if(Doctor.GetComponent<DoctorManager>().Create_now == true)
+        Create_Now = Doctor.GetComponent<DoctorManager>().Create_now;
+
+        if (Doctor.GetComponent<DoctorManager>().Create_now == true)
         {
             //ゲージ画像に作業時間を反映させる
             GageImage.fillAmount = Doctor.GetComponent<DoctorManager>().Createnow_Time / Doctor.GetComponent<DoctorManager>().Create_Time;
@@ -51,6 +57,22 @@ public class CreateGage : MonoBehaviour
                 BuckGage.fillAmount = 0;
                 GageImage.fillAmount = BuckGage.fillAmount = 0;//画像をリセット(非表示)
             }
+        }
+
+        Image_Change();
+    }
+
+    void Image_Change()
+    {
+        if(Create_Now == true)
+        {
+            GageImage.gameObject.SetActive(true);
+            BuckGage.gameObject.SetActive(true);
+        }
+        else
+        {
+            GageImage.gameObject.SetActive(false);
+            BuckGage.gameObject.SetActive(false);
         }
     }
 }
