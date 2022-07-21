@@ -5316,6 +5316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Doctor: {fileID: 1033167459}
+  Create_Now: 0
   CreateTime: 0
   GageImage: {fileID: 786414733}
   BuckGage: {fileID: 2093536382}
