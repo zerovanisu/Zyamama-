@@ -79,24 +79,29 @@ public class DoctorManager : MonoBehaviour
 			Horizontal = Input.GetAxis("Horizontal_Dr");
 			Vertical = Input.GetAxis("Vertical_Dr");
 			
-			//移動量の計算
-			direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
-			
-			//向きの切り替え
-			Turn();
-
-			//パーツを掴む処理
-			Catch();
-
-			//パーツに触れてるかを取得
-			OnParts = Hand.GetComponent<DoctorHand>().OnParts;
-
 			//スキルボタンを押されたら
 			if (Input.GetButtonDown("△_Button"))
 			{
 				Create();
 			}
 		}
+		else
+        {
+			Horizontal = 0;
+			Vertical = 0;
+		}
+
+		//移動量の計算
+		direction = new Vector3(Horizontal, 0, Vertical).normalized * Speed;
+
+		//向きの切り替え
+		Turn();
+
+		//パーツを掴む処理
+		Catch();
+
+		//パーツに触れてるかを取得
+		OnParts = Hand.GetComponent<DoctorHand>().OnParts;
 
 		//ライフ画像処理
 		if (Life_Doctor == 1)
@@ -239,6 +244,7 @@ public class DoctorManager : MonoBehaviour
 					SkillTime = Red_Time;
 					break;
 			}
+
 			Createnow_Time = Create_Time;//作業用のカウントダウンを設定・再設定
 			Create_now = true;//作業中のフラグをオンにする(オンの間は動けない)
 		}

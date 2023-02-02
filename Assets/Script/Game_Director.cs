@@ -321,7 +321,7 @@ public class Game_Director : MonoBehaviour
             Doctor.GetComponent<DoctorManager>().SkillOn = true;//博士のスキルを発動させる
             Doctor.GetComponent<DoctorManager>().Skill_Keep = false;//博士の加工後パーツ取得状をリセット
 
-            Debug.Log("博士のポイント" + Point + "/" + Parts_No);
+            //Debug.Log("博士のポイント" + Point + "/" + Parts_No);
         }
     }
 }
